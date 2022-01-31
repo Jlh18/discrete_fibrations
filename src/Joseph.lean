@@ -1,25 +1,22 @@
 import category_theory.category.Cat
 import category_theory.limits.constructions.pullbacks
 
-
--- TODO category_theory/limits defines instance category Type u ✓
--- TODO Find has_pullback ✓ category_theory/limit/shapes/pullback
--- TODO Cat of Cats has pullback
--- TODO Show that category of elements of a functor into Set is the pullback
---      in the category of
+-- TODO Show that category of elements of a functor into Set is pullback
+--      in the category of categories
 
 /-!
 # The category of categories is complete
 
 This file contains constructions of all 1-limits
 in the category `Cat` of all categories, treated as a 1-category.
-
--- TODO sketch the proof
+We use the result `limits_from_equalizers_and_products`.
+We construct binary products, dependent products, fiber products/pullbacks,
+and equalizers in the category of Categories.
 
 ## Implementation notes
 
-It is better to refer to morphisms in Cat using ⟶ (\hom)
-rather than ⥤ (\functor) for lean to infer instances.
+It is better to refer to morphisms in `Cat` using `⟶ (\hom)`
+rather than `⥤ (\functor)` for lean to infer instances.
 -/
 
 
