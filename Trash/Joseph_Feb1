@@ -1,7 +1,5 @@
 import category_theory.category.Cat
 import category_theory.limits.constructions.pullbacks
-import category_theory.limits.constructions.limits_of_products_and_equalizers
-
 
 -- TODO Show that category of elements of a functor into Set is pullback
 --      in the category of categories
@@ -237,20 +235,15 @@ has_equalizers_of_has_limit_parallel_pair _
 
 end equalizer
 
-section products
+section pi
 
 
 
-instance : has_products Cat.{v u} := sorry
--- has_products_of
-
-end products
-
-lemma has_limits : has_limits Cat.{v u} :=
-limits_from_equalizers_and_products
+end pi
 
 end Cat
 
+-- lemma : has_limits Cat.{v u} := sorry
 
 -- instance has_pullbacks : has_pullbacks Cat.{v u} :=
 -- by apply_instance
