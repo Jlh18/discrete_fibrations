@@ -2,6 +2,7 @@ import category_theory.category.Cat
 import category_theory.limits.constructions.pullbacks
 import category_theory.limits.constructions.limits_of_products_and_equalizers
 import category_theory.pi.basic
+import category_theory.punit
 
 -- TODO Show that category of elements of a functor into Set is pullback
 --      in the category of categories
@@ -181,6 +182,10 @@ end equalizer
 
 namespace Cat
 
+/-- The dependent product of categories, as an object of Cat.{u u} (note this is small) -/
+def pi {I : Type u} (F : discrete I ⥤ Cat.{u u}) : Cat.{u u} :=
+{ α := Π i : I, F.obj i }
+
 namespace pi
 
 variables {C : Cat.{u u}} {I : Type u} {F : discrete I ⥤ Cat.{u u}}
@@ -313,7 +318,20 @@ limits_from_equalizers_and_products
 instance : has_pullbacks Cat.{u u} :=
 @has_limits.has_limits_of_shape _ _ has_limits _ _
 
+-- def punit : Cat.{v u} :=
+-- { α := discrete punit }
+
+
 end Cat
+
+namespace discrete_fibration
+
+variables {C : Cat.{u u}}
+
+
+
+end discrete_fibration
+
 end category_theory
 
 -- instance has_pullbacks : has_pullbacks Cat.{v u} :=
