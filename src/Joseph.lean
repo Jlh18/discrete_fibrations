@@ -27,12 +27,97 @@ It is better to refer to morphisms in `Cat` using `⟶ (\hom)`
 rather than `⥤ (\functor)` for lean to infer instances.
 -/
 
+/-
+## Declaration
+
+Some of the work in this file is thanks to others.
+Where it is *not* stated, it is my own work.
+-/
 
 universes u v w
 
+open category_theory
+open category_theory.limits
+open category_theory.prod
+
 namespace category_theory
 
-open category_theory.limits
+section heq
+
+variables
+  {C D E : Type u} [category.{v} C] [category.{v} D] [category.{v} E]
+  {F G : C ⥤ D} {x y z : C} (f : x ⟶ y) {g : y ⟶ z}
+
+lemma heq_iff_eq_conj_eq_to_hom
+  (h₁ : F.obj x = G.obj x) (h₂ : F.obj y = G.obj y) :
+  F.map f = eq_to_hom h₁ ≫ G.map f ≫ eq_to_hom h₂.symm ↔ F.map f == G.map f :=
+by { generalize : F.map f = Ff, generalize : G.map f = Gf, clear f,
+  generalize_hyp : F.obj x = F₁ at h₁ Ff ⊢, generalize_hyp : F.obj y = F₂ at h₂ Ff ⊢,
+  cases h₁, cases h₂, simp }
+-- entirely not my work, due to Xu Junyan
+
+namespace functor
+
+variable {f}
+
+lemma map_comp_heq (hx : F.obj x = G.obj x) (hy : F.obj y = G.obj y) (hz : F.obj z = G.obj z)
+  (hf : F.map f == G.map f) (hg : F.map g == G.map g) :
+  F.map (f ≫ g) == G.map (f ≫ g) :=
+begin
+  rw [F.map_comp, G.map_comp],
+  -- cannot case directly on hf, since types of its source/target are not
+  -- definitionally equal.
+  -- To make them definitionally equal, must case on x.2 y.2 z.2
+  -- In order to case on x.2 and z.2 must generalize these
+  -- But f depends on x, and hf depends on f, so must generalize these variables
+  -- in reverse order.
+  generalize_hyp : F.map f = Ff at ⊢ hf, generalize_hyp : G.map f = Gf at ⊢ hf,
+  generalize_hyp : F.map g = Fg at ⊢ hg, generalize_hyp : G.map g = Gg at ⊢ hg,
+  generalize_hyp : F.obj x = Fx at ⊢ Ff Gf hx,
+  generalize_hyp : F.obj y = Fy at ⊢ Fg Ff hy,
+  generalize_hyp : F.obj z = Fz at ⊢ Fg Gg hz,
+  -- now able to clear the variables, substitute eqs and heqs
+  subst hx, subst hy, subst hz, cases hf, cases hg,
+  exact heq_of_eq rfl,
+end
+-- thanks to Xu Junyan who came up with the proof
+-- I extracted this to two lemmas
+
+lemma map_comp_heq' (hobj : ∀ x : C, F.obj x = G.obj x)
+  (hmap : ∀ {x y} (f : x ⟶ y), F.map f == G.map f) :
+  F.map (f ≫ g) == G.map (f ≫ g) :=
+  map_comp_heq (hobj _) (hobj _) (hobj _) (hmap _) (hmap _)
+
+lemma precomp_map_heq (H : E ⥤ C) (hobj : ∀ x : C, F.obj x = G.obj x)
+  (hmap : ∀ {x y} (f : x ⟶ y), F.map f == G.map f) {x y : E} (f : x ⟶ y) :
+  (H ⋙ F).map f == (H ⋙ G).map f := hmap _
+
+lemma comp_map_heq (H : D ⥤ E) (hobj : ∀ x : C, F.obj x = G.obj x)
+  (hmap : ∀ {x y} (f : x ⟶ y), F.map f == G.map f) :
+  (F ⋙ H).map f == (G ⋙ H).map f :=
+begin
+  dsimp,
+  obtain ⟨ hx, hy, hf ⟩  := ⟨ hobj x, hobj y, hmap f ⟩,
+  generalize_hyp : F.map f = Ff at ⊢ hf,
+  generalize_hyp : G.map f = Gf at ⊢ hf,
+  generalize_hyp : F.obj x = Fx at ⊢ Ff hx,
+  generalize_hyp : G.obj x = Gx at ⊢ Gf hx,
+  generalize_hyp : F.obj y = Fy at ⊢ Ff hy,
+  generalize_hyp : G.obj y = Gy at ⊢ Gf hy,
+  subst hx, subst hy, cases hf,
+  exact heq_of_eq rfl,
+end
+-- similar idea to map_comp_heq
+
+lemma hcongr_hom {F G : C ⥤ D} (h : F = G) {X Y} (f : X ⟶ Y) :
+  F.map f == G.map f :=
+by subst h; simp
+
+end functor
+
+end heq
+
+section product
 
 /-- The natural transformation between two functors out of discrete I,
 specified by its components. -/
@@ -40,138 +125,61 @@ def map_pi {I : Type w} {C : Type u} [category.{v} C] {F G : discrete I ⥤ C}
   (on_obj : Π i : I, F.obj i ⟶ G.obj i) : F ⟶ G :=
 { app := on_obj }
 
-namespace Cat
+end product
 
 section equalizer
 
-variables {C D E : Cat.{v u}} (F G : C ⟶ D)
+variables
+  {C D E : Type u} [category.{v} C] [category.{v} D] [category.{v} E]
+  {F G : C ⥤ D} {x y z : C} {f : x ⟶ y} {g : y ⟶ z}
 
 /-- The equalizer category of two functors (as a subcategory of the source category C) -/
-def equalizer.str' : category.{v} { c : C // F.obj c = G.obj c } :=
-{
-  hom := λ x y,
-    { f : x.1 ⟶ y.1 // F.map f = eq_to_hom x.2 ≫ G.map f ≫ eq_to_hom y.2.symm },
-  id := λ x, ⟨ 𝟙 x , by dsimp; simp only [category_theory.category.id_comp,
-    category_theory.eq_to_hom_refl, eq_self_iff_true,
-    category_theory.eq_to_hom_trans, category_theory.functor.map_id] ⟩,
-  comp := λ x y z f g, ⟨ f.1 ≫ g.1 ,
-  begin
-    have hf := f.2, simp only [subtype.val_eq_coe] at hf,
-    have hg := g.2, simp only [subtype.val_eq_coe] at hg,
-    dsimp,
-    simp only [category_theory.category.assoc,
-      category_theory.functor.map_comp, hf, hg],
-    dsimp,
-    simp only [eq_to_hom_trans_assoc, eq_to_hom_refl, category.id_comp],
-  end ⟩,
-}
+instance equalizer : category.{v} { c : C // F.obj c = G.obj c } :=
+{ hom := λ x y,
+    { f : x.1 ⟶ y.1 // F.map f == G.map f },
+  id := λ x, ⟨ 𝟙 x , by { erw [F.map_id _, G.map_id, x.2], } ⟩,
+  comp := λ x y z f g, ⟨ f.1 ≫ g.1 , functor.map_comp_heq x.2 y.2 z.2 f.2 g.2 ⟩ }
+-- this proof used to be 14 lines long,
+-- extracted map_comp_heq; thanks to Xu Junyan helping to use heq (==) ← eq (=)
 
-/-- The equalizer category of two functors (as an object in Cat) -/
-def equalizer : Cat.{v u} :=
-{
-  α := { c : C // F.obj c = G.obj c },
-  str := equalizer.str' _ _
-}
+abbreviation EQ (F G : C ⥤ D) := { c : C // F.obj c = G.obj c }
+
+namespace equalizer
+
+/-- Existence part of the universal property of equalizers -/
+def lift (H : E ⥤ C) (hobj : ∀ e : E, (H ⋙ F).obj e = (H ⋙ G).obj e)
+  (hmap : ∀ {x y : E} (f : x ⟶ y), F.map (H.map f) == G.map (H.map f)) :
+  E ⥤ { c : C // F.obj c = G.obj c } :=
+{ obj := λ x, ⟨ H.obj x , hobj x ⟩,
+  map := λ _ _ f, ⟨ H.map f , hmap f ⟩ }
 
 /-- The map embedding the equalizer of two functors into the source category -/
-def fork_ι : equalizer F G ⟶ C :=
-{
-  obj := subtype.val,
-  map := λ _ _, subtype.val,
-}
+def ι : EQ F G ⥤ C :=
+{ obj := subtype.val,
+  map := λ _ _, subtype.val }
 
-lemma fork_condition : fork_ι F G ≫ F = fork_ι F G ≫ G :=
-category_theory.functor.ext (λ ⟨ _ , h ⟩, h ) $
-λ x y f , f.2
+lemma ι_obj (x : EQ F G) : (ι ⋙ F).obj x = (ι ⋙ G).obj x := x.2
 
-/-- The equalizer of two functors as a cone over the parallel pair diagram (called a fork) -/
-def fork : fork F G :=
-fork.of_ι (fork_ι F G) (fork_condition _ _)
+lemma ι_map {x y : EQ F G} (f : x ⟶ y) : (ι ⋙ F).map f == (ι ⋙ G).map f := f.2
 
-variables {F G}
+lemma self_eq_lift_obj (H : E ⥤ EQ F G) (x : E) :
+  (H ⋙ ι ⋙ F).obj x = (H ⋙ ι ⋙ G).obj x := by { erw ι_obj, refl }
 
-/-- Existence part of the universal property of equalizers -/
-def lift {H : E ⟶ C} (hobj : ∀ e : E, (H ≫ F).obj e = (H ≫ G).obj e)
-  (hmap : ∀ {x y : E} (f : x ⟶ y), F.map (H.map f)
-    = eq_to_hom (hobj _) ≫ G.map (H.map f) ≫ eq_to_hom (hobj _).symm) :
-  E ⟶ equalizer F G :=
-{
-  obj := λ x, ⟨ H.obj x , hobj x ⟩,
-  map := λ _ _ f, ⟨ H.map f , hmap f ⟩,
-}
+lemma self_eq_lift_map (H : E ⥤ EQ F G) {x y : E} (f : x ⟶ y) :
+  (H ⋙ ι ⋙ F).map f == (H ⋙ ι ⋙ G).map f :=
+functor.precomp_map_heq _ ι_obj (λ _ _, ι_map) _
 
--- lemma self_eq_lift {H : E ⟶ equalizer F G} :
---   H = @lift _ _ _ (H ≫ fork_ι _ _) (λ e, _) _ := sorry
-
--- lemma self_eq_lift (c : category_theory.limits.fork F G) :
---   c.π = lift c :=
--- functor.hext (λ x, prod.ext rfl rfl)
--- (λ x y f, heq_of_eq (prod.ext rfl rfl))
-
-namespace is_limit_fork
-
-/-- Existence part of the universal property of equalizers -/
-def lift (c : category_theory.limits.fork F G) : c.X ⟶ (fork F G).X :=
-lift ( λ e, congr_arg (λ F', functor.obj F' e) c.condition )
-  ( λ _ _ f, by convert functor.congr_hom c.condition f )
-
-lemma eq_to_hom.val {x y : equalizer F G} (h : x = y) :
-  (@eq_to_hom (equalizer F G) _ _ _ h).val = eq_to_hom (by rw h) :=
-by cases h; refl
-
-lemma fac (c : category_theory.limits.fork F G) :
-  is_limit_fork.lift c ≫ (fork F G).ι = c.ι :=
-functor.hext (λ _, rfl) (λ x y f, by { apply heq_of_eq, dsimp only [(≫)], simpa })
-
-/-- Uniqueness part of the universal property of equalizers -/
-lemma uniq (c : category_theory.limits.fork F G) (m : c.X ⟶ (fork F G).X)
-  (h : ∀ (j : walking_parallel_pair), m ≫ (fork F G).π.app j = c.π.app j) :
-  m = is_limit_fork.lift c :=
-category_theory.functor.ext
-  ( λ x, subtype.ext $ -- just check the C objects
-  calc (m.obj x).1 = (fork F G).ι.obj (m.obj x) : rfl
-               ... = (m ≫ (fork F G).ι).obj x : rfl
-               ... = (m ≫ (fork F G).π.app walking_parallel_pair.zero).obj x : rfl
-               ... = (c.π.app walking_parallel_pair.zero).obj x :
-                 by rw (h walking_parallel_pair.zero)
-               ... = ((lift c).obj x).1 : rfl )
-  ( λ x y f, subtype.ext $ -- just check the C morphisms
-  calc (m.map f).1 = (fork F G).ι.map (m.map f) : rfl
-               ... = (m ≫ (fork F G).ι).map f : rfl
-               ... = (m ≫ (fork F G).π.app walking_parallel_pair.zero).map f : rfl
-               ... = eq_to_hom _ ≫ (c.π.app walking_parallel_pair.zero).map f ≫ eq_to_hom _ :
-                 functor.congr_hom (h walking_parallel_pair.zero) f
-               ... = (eq_to_hom _ ≫ (lift c).map f ≫ eq_to_hom _).1 :
-                 by congr; simpa only [eq_to_hom.val] )
-
-end is_limit_fork
-
-open is_limit_fork
-
-/-- The equalizer of two functors (as a cone/fork) is a limit -/
-def is_limit_fork : is_limit (fork F G) :=
-fork.is_limit.mk (fork F G) is_limit_fork.lift fac uniq
-
-/-- The equalizer of two functors (as a cone/fork) is a limit -/
-def limit_cone_parallel_pair : limit_cone (parallel_pair F G) :=
-{
-  cone := fork F G,
-  is_limit := is_limit_fork
-}
-
-/-- The equalizer of two functors -/
-instance has_limit_parallel_pair : has_limit (parallel_pair F G) :=
-⟨⟨ limit_cone_parallel_pair ⟩⟩
-
-/-- The category of categories has equalizers -/
-instance has_equalizers : has_equalizers Cat.{v u} :=
-has_equalizers_of_has_limit_parallel_pair _
+/-- Any map into the equalizer is equal to the induced map from the
+universal property using the obvious composition-/
+lemma self_eq_lift (H : E ⥤ EQ F G) :
+  H = lift (H ⋙ ι) (self_eq_lift_obj H) (λ _ _, self_eq_lift_map H) :=
+functor.hext (λ x, subtype.ext rfl)
+  (λ x y f, by { dsimp only [lift, ι], apply heq_of_eq, apply subtype.ext, refl })
 
 end equalizer
+end equalizer
 
-/-- The dependent product of categories, as an object of Cat.{u u} (note this is small) -/
-def pi {I : Type u} (F : discrete I ⥤ Cat.{u u}) : Cat.{u u} :=
-{ α := Π i : I, F.obj i }
+namespace Cat
 
 namespace pi
 
@@ -186,6 +194,7 @@ def lift (legs : Π i : I, C ⟶ F.obj i) : C ⟶ pi F :=
 universal property applied to the obvious composition -/
 lemma self_eq_lift (G : C ⟶ pi F) : G = lift (λ i, G ≫ pi.eval _ _) :=
 by {cases G, refl}
+-- inspired by golf due to Xu Junyan for the binary product case
 
 variable (F)
 
@@ -206,12 +215,14 @@ lift (λ i, c.π.app i)
 lemma fac (c : limits.cone F) (i : discrete I) :
   lift c ≫ (cone F).π.app i = c.π.app i :=
 by { rw self_eq_lift (lift c), apply functor.hext; { intros, refl } }
+-- thanks to Xu Junyan's golf for the binary product case (by using hext ← ext)
 
 /-- Uniqueness in the universal property of products -/
 lemma uniq (c : limits.cone F) (m : c.X ⟶ (cone F).X)
   (h : ∀ (j : discrete I), m ≫ (cone F).π.app j = c.π.app j) :
   m = is_limit_cone.lift c :=
 by { unfold lift, simp_rw ← h, apply functor.hext; { intros, refl } }
+-- thanks to Xu Junyan's golf for the binary product case (by using hext ← ext)
 
 end is_limit_cone
 
@@ -232,6 +243,68 @@ instance : has_products Cat.{u u} := λ I,
 
 end pi
 
+namespace equalizer
+
+variables {C D : Cat.{v u}} (F G : C ⟶ D)
+
+/-- The equalizer category of two functors (as an object in Cat) -/
+def equalizer : Cat.{v u} :=
+{ α := { c : C // F.obj c = G.obj c } }
+
+/-- The map embedding the equalizer of two functors into the source category -/
+def fork_ι : equalizer F G ⟶ C := equalizer.ι
+
+lemma fork_condition : fork_ι F G ≫ F = fork_ι F G ≫ G :=
+functor.hext (λ ⟨ _ , h ⟩, h ) (λ _ _ f , f.2)
+
+/-- The equalizer of two functors as a cone over the parallel pair diagram (called a fork) -/
+def fork : fork F G := fork.of_ι (fork_ι F G) (fork_condition _ _)
+
+variables {F G}
+
+namespace is_limit_fork
+
+/-- Existence part of the universal property of equalizers -/
+def lift (c : category_theory.limits.fork F G) : c.X ⟶ (fork F G).X :=
+equalizer.lift c.ι
+  (λ x, by { have h := c.condition, dsimp only [(≫)] at h, rw h })
+  (λ _ _ f, by { convert functor.hcongr_hom c.condition f })
+
+lemma fac (c : category_theory.limits.fork F G) :
+  is_limit_fork.lift c ≫ (fork F G).ι = c.ι :=
+functor.hext (λ _, rfl) (λ _ _ _, heq_of_eq rfl)
+-- golf inspired by Xu Junyan's idea for binary products
+-- (from 7 lines using ext ← hext)
+
+/-- Uniqueness part of the universal property of equalizers -/
+lemma uniq (c : category_theory.limits.fork F G) (m : c.X ⟶ (fork F G).X)
+  (h : ∀ (j : walking_parallel_pair), m ≫ (fork F G).π.app j = c.π.app j) :
+  m = is_limit_fork.lift c :=
+by{ rw equalizer.self_eq_lift m, congr, exact h walking_parallel_pair.zero }
+-- golf inspired by Xu Junyan's idea for binary products
+-- (from 15 lines using self_eq_lift)
+
+end is_limit_fork
+
+open is_limit_fork
+
+/-- The equalizer of two functors (as a cone/fork) is a limit -/
+def is_limit_fork : is_limit (fork F G) :=
+fork.is_limit.mk (fork F G) lift fac uniq
+
+/-- The equalizer of two functors (as a cone/fork) is a limit -/
+def limit_cone_parallel_pair : limit_cone (parallel_pair F G) :=
+{ cone := fork F G,
+  is_limit := is_limit_fork }
+
+instance has_limit_parallel_pair : has_limit (parallel_pair F G) :=
+⟨⟨ limit_cone_parallel_pair ⟩⟩
+
+instance has_equalizers : has_equalizers Cat.{v u} :=
+has_equalizers_of_has_limit_parallel_pair _
+
+end equalizer
+
 /-- The category of small categories has all small limts -/
 lemma has_limits : has_limits.{u} Cat.{u u} :=
 limits_from_equalizers_and_products
@@ -242,3 +315,6 @@ instance : has_pullbacks Cat.{u u} :=
 
 end Cat
 end category_theory
+
+-- instance has_pullbacks : has_pullbacks Cat.{v u} :=
+-- by apply_instance
