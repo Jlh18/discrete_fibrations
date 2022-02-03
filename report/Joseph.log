@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  3 FEB 2022 12:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  3 FEB 2022 19:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1298,23 +1298,23 @@ LaTeX Font Info:    Trying to load font information for TS1+qpl on input line 5
 File: ts1qpl.fd 2009/09/25 v1.2 font definition file for TS1/qpl
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
 No file Joseph.bbl.
-[2] (./Joseph.aux)
+[4] (./Joseph.aux)
 Package rerunfilecheck Info: File `Joseph.out' has not changed.
-(rerunfilecheck)             Checksum: 4248DBBA425365D515B3DBE9E930D57B;224.
+(rerunfilecheck)             Checksum: 4E2BCD8005C40803448947F3A5AC89EF;753.
  ) 
 Here is how much of TeX's memory you used:
- 29283 strings out of 478353
- 542771 string characters out of 5854636
+ 29359 strings out of 478353
+ 544135 string characters out of 5854636
  950467 words of memory out of 5000000
- 46858 multiletter control sequences out of 15000+600000
- 449966 words of font info for 109 fonts, out of 8000000 for 9000
+ 46919 multiletter control sequences out of 15000+600000
+ 452866 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  100i,16n,104p,1195b,1248s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texmf-d
-ist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/fonts/enc/d
-vips/tex-gyre/q-ec.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/t
+exmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}{/usr/share/texmf-dist/fonts/enc/dv
+ips/tex-gyre/q-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 mi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
 share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/p
@@ -1325,12 +1325,14 @@ usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf
 /type1/public/mathabx-type1/matha9.pfb></usr/share/texmf-dist/fonts/type1/publi
 c/mathabx-type1/mathb9.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/q
 plb.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/share
-/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/share/texmf-dist/fon
-ts/type1/public/cm-super/sftt1000.pfb>
-Output written on Joseph.pdf (2 pages, 250819 bytes).
+/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/share/texmf-dist/fonts/
+type1/public/cm-super/sftt0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm
+-super/sftt0900.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1000
+.pfb>
+Output written on Joseph.pdf (4 pages, 328185 bytes).
 PDF statistics:
- 124 PDF objects out of 1000 (max. 8388607)
- 88 compressed objects within 1 object stream
- 16 named destinations out of 1000 (max. 500000)
- 29 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 168 PDF objects out of 1000 (max. 8388607)
+ 125 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 45 words of extra memory for PDF output out of 10000 (max. 10000000)
 

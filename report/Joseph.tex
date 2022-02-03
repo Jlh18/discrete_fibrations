@@ -471,28 +471,28 @@
 
 \section{Introduction}
 
-In this project, I show that \texttt{Cat.{u u}}, the category of small categories
+In this project, I show that \texttt{Cat.\{u u\}}, the category of small categories
 is complete, where ``small'' in \texttt{lean} is taken to mean
 the universe levels (sizes) for objects and morphisms is the same.
-My work can easily be adapted to show that relaxing the
-``small'' condition, \texttt{Cat.{v u}} has all finite limits.
+I also show that \texttt{Cat.\{v u\}}, the category of all categories
+(up to appropriate universe levels) has all finite limits.
 Since the category of categories is a bicategory,
 and it is quite rare in practice to work with strict equality of functors,
 the ``morally correct'' limits to consider should really be 2-limits,
 where the functors are considered up to natural isomorphism.
-However, these are not considered here, and existence of 1-limits holds anyway,
-which should deduce the 2-limit case.
+However, these are not considered here, since existence of 1-limits holds anyway.
+This should deduce the 2-limit case, as equal funtors are trivially naturally isomorphic.
 
 An obvious next step is to show results for colimits, which I have not yet done.
 
-\section{Mathlib Results}
+\section{Relevant definitions and results in mathlib}
 
 The category theory library in \texttt{mathlib} already contains definitions for
 limits, using cones over diagrams.
 
 \begin{dfn}[Diagrams, cones and limits]
-  A diagram in a category $\CC$ is simply a functor from some indexing category
-  $F : \II \to \CC$.
+  A diagram in a category $\CC$ is simply a functor from some category
+  $F : \II \to \CC$, and $\II$ is called the shape.
   Diagrams are not explicitely defined in \texttt{lean},
   as this would lead to extra unnecessary definitional equalities.
 
@@ -574,12 +574,131 @@ limits, using cones over diagrams.
   \[ \text{\small $l$ is the equalizer of $\FF \phi$ and $\FF \psi$}\]
 \end{dfn}
 
-The libarary also contains definitions of categorical products,
-equalizers, and a proof that categories with products and equalizers
-have all limits.
-My work is showing that their constructions for products of categories
-are in fact products in \texttt{CAT.\{u u\}},
-and constructing equalizers in \texttt{CAT.\{v u\}} directly.
+All of the following are results from \texttt{mathlib} that I will be using in my work.
+\begin{itemize}
+  \item (Categorical) definitions of binary and arbitrary products,
+        equalizers, and pullback.
+        Browsable \href{https://leanprover-community.github.io/mathlib_docs/category_theory/limits/shapes/products.html}{here}.
+  \item A proof that categories with products and equalizers has all small limits.
+        A proof that categories with finite products and equalizers is complete.
+        A proof that categories with binary products and terminal objects has finite products.
+        Browsable \href{https://leanprover-community.github.io/mathlib_docs/category_theory/limits/constructions/limits_of_products_and_equalizers.html}{here}.
+  \item The product of categories (as a category, \textit{not} as an object in \texttt{Cat.\{v u\}}).
+        Browsable \href{https://leanprover-community.github.io/mathlib_docs/category_theory/pi/basic.html}{here}.
+  \item The binary product of categories (as a category. \textit{not} as an object in \texttt{Cat.\{v u\}}).
+        Browsable \href{https://leanprover-community.github.io/mathlib_docs/category_theory/products/basic.html}{here}.
+\end{itemize}
+
+\section{The process of giving a limit}
+
+In this section I walk through the general process of giving a limit,
+by following my work on binary products.
+This was the first example I worked on, and I think it
+demonstrates the process well, having the fewest technicalities.
+
+We begin by giving the object in the category of categories
+that we are interested in constructing.
+The definition of the category of categories essentially consists
+of two pieces of data, $\al$ the underlying type,
+and \texttt{str} an \texttt{instance} of $\al$ as a category.
+The second piece of data is given the parameter \texttt{obviously},
+so we need not specify it in our construction:
+
+\begin{lstlisting}
+def prod (C D : Cat.{v u}) : Cat.{v u} := { α := (C.α × D.α) } \end{lstlisting}
+
+The underlying type of the product is simply of product
+of the underlying types of \texttt{C} and \texttt{D}.
+The library already has \href{https://leanprover-community.github.io/mathlib_docs/category_theory/products/basic.html}{an \texttt{instance}}
+of this type as a category, so the type is all we need.
+
+We promote this to a cone, by defining the natural transformation from
+the constant functor at \texttt{prod} to the diagram.
+The diagram in question is called \texttt{pair} and its shape
+(a category with just two objects with no morphisms) is (a type that looks exactly like) \texttt{Bool}.
+A \texttt{mathlib} lemma \texttt{map\_pair} (specialized to our use case) that says to make a
+natural transformation into a \texttt{Bool} shaped diagram,
+it suffices to just give a map into each of the two objects in the diagram.
+Hence we have a slick definition
+
+\begin{lstlisting}
+def cone (C D : Cat.{v u}) : cone (pair C D) :=
+{ X := prod C D,
+  π := map_pair (fst _ _) (snd _ _) } \end{lstlisting}
+
+We intend for this cone to be the limit.
+Which consists of a \texttt{lift}, \texttt{fac}torizations through the \texttt{lift},
+and \texttt{uniq}ness of the lift.
+
+Constructing the lift generally amounts to constructing maps for objects and morphisms
+by destructing the definition of the limit cone.
+In this particular case, since the limit cone is a product of categories,
+to make objects and morphisms in it we need to give pairs of objects
+and morphisms from each category.
+Since cones over this diagram only really consist of functors from the apex
+into \texttt{C} and \texttt{D}, giving the \texttt{lift} is a corollary of this definition:
+
+\begin{lstlisting}
+def lift (f : E ⟶ C) (g : E ⟶ D) : (E ⟶ prod C D) :=
+{ obj := λ z, ⟨ f.obj z , g.obj z ⟩,
+  map := λ _ _ h, ⟨ f.map h , g.map h ⟩ }\end{lstlisting}
+
+The remaining two parts of this construction involve proving an equality bewteen two functors,
+which deserves some interesting design decisions.
+We leave this discussion to the next section.
+
+\section{Equality between functors}
+
+In the introduction it was mentioned that strict equality between
+functors was not ``morally correct''.
+This is exemplified when we try to prove such an equality.
+Naively, extensionality for functors should say two functors $F G : \CC \to \DD$
+should be equal if and only if they are equal on objects and on morphisms.
+However, type theory complicates this issue for morphisms.
+If $x$ and $y$ are objects in $\CC$ and we have proofs that $F x = G x$ and $F y = G y$,
+it doesn't make sense to ask for a morphism $f : x \to y$ whether $F f = G f$,
+because these are terms of types that are not definitionally equal.
+Namely $F f : F x \to F y$ and $G f : G x \to G y$.
+
+The obvious workaround to this issue is to instead ask for a commutative square
+where the sides are given by the equalities we have (equal objects are certainly isomorphic).
+\[\begin{tikzcd}
+	{F x} & {F y} \\
+	Gx & Gy
+	\arrow["{F f}", from=1-1, to=1-2]
+	\arrow["{\texttt{eq\_to\_hom}}"', from=1-1, to=2-1]
+	\arrow["Gf"', from=2-1, to=2-2]
+	\arrow["{\texttt{eq\_to\_hom}}"', from=2-2, to=1-2]
+\end{tikzcd}\]
+Whilst this method works - I used it in my first round of proofs,
+it can be improved with a clever trick.
+
+Instead of considering strict equality ($=$) on morphisms,
+Xu Junyan on Zulip suggested using \texttt{heq}uality ($==$) instead.
+This different version of equality is also a proposition whose only
+proof is \texttt{refl} (that the two terms are the same),
+but this question to be asked even when their ambient types are different.
+Hence in the above example I could simply write $F f == G f$,
+though I would not be able to prove it until I make the two sides
+definitionally equal.
+The benefit of this definition is that one doesn't need to deal with the
+extra compositions the original workaround introduces.
+In the end whatever types we are working with should be equal
+anyway, so it is more straight forward to first imagine that they are and realise that
+this is the case later.
+
+A useful result from the library is \texttt{functor.hext},
+which says that two functors are equal if they are equal on objects and
+\texttt{heq}ual on morphisms.
+
+% Things I want to talk about
+% \item equality of functors -> definition of heq and comparison with eq
+% \item definition of equalizer wrt eq / heq
+% \item refactoring through lifts
+% \item universe levels for terminal object
+% \item why arbitrary products must be small
+
+
 
 
 

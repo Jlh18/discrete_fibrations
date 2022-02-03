@@ -45,51 +45,28 @@ variable {f}
 lemma map_comp_heq (hx : F.obj x = G.obj x) (hy : F.obj y = G.obj y) (hz : F.obj z = G.obj z)
   (hf : F.map f == G.map f) (hg : F.map g == G.map g) :
   F.map (f ≫ g) == G.map (f ≫ g) :=
-begin
-  rw [F.map_comp, G.map_comp],
-  -- cannot case directly on hf, since types of its source/target are not
-  -- definitionally equal.
-  -- To make them definitionally equal, must case on x.2 y.2 z.2
-  -- In order to case on x.2 and z.2 must generalize these
-  -- But f depends on x, and hf depends on f, so must generalize these variables
-  -- in reverse order.
-  generalize_hyp : F.map f = Ff at ⊢ hf, generalize_hyp : G.map f = Gf at ⊢ hf,
-  generalize_hyp : F.map g = Fg at ⊢ hg, generalize_hyp : G.map g = Gg at ⊢ hg,
-  generalize_hyp : F.obj x = Fx at ⊢ Ff Gf hx,
-  generalize_hyp : F.obj y = Fy at ⊢ Fg Ff hy,
-  generalize_hyp : F.obj z = Fz at ⊢ Fg Gg hz,
-  -- now able to clear the variables, substitute eqs and heqs
-  subst hx, subst hy, subst hz, cases hf, cases hg,
-  exact heq_of_eq rfl,
-end
+by { rw [F.map_comp, G.map_comp], congr' }
 -- thanks to Xu Junyan who came up with the proof
 -- I extracted this to two lemmas
 
 lemma map_comp_heq' (hobj : ∀ x : C, F.obj x = G.obj x)
   (hmap : ∀ {x y} (f : x ⟶ y), F.map f == G.map f) :
   F.map (f ≫ g) == G.map (f ≫ g) :=
-  map_comp_heq (hobj _) (hobj _) (hobj _) (hmap _) (hmap _)
+by rw functor.hext hobj (λ _ _, hmap)
 
 lemma precomp_map_heq (H : E ⥤ C)
   (hmap : ∀ {x y} (f : x ⟶ y), F.map f == G.map f) {x y : E} (f : x ⟶ y) :
   (H ⋙ F).map f == (H ⋙ G).map f := hmap _
 
-lemma comp_map_heq (H : D ⥤ E) (hobj : ∀ x : C, F.obj x = G.obj x)
+lemma comp_map_heq (H : D ⥤ E) (hx : F.obj x = G.obj x) (hy : F.obj y = G.obj y)
+  (hmap : F.map f == G.map f) :
+  (F ⋙ H).map f == (G ⋙ H).map f :=
+by { dsimp, congr' }
+
+lemma comp_map_heq' (H : D ⥤ E) (hobj : ∀ x : C, F.obj x = G.obj x)
   (hmap : ∀ {x y} (f : x ⟶ y), F.map f == G.map f) :
   (F ⋙ H).map f == (G ⋙ H).map f :=
-begin
-  dsimp,
-  obtain ⟨ hx, hy, hf ⟩  := ⟨ hobj x, hobj y, hmap f ⟩,
-  generalize_hyp : F.map f = Ff at ⊢ hf,
-  generalize_hyp : G.map f = Gf at ⊢ hf,
-  generalize_hyp : F.obj x = Fx at ⊢ Ff hx,
-  generalize_hyp : G.obj x = Gx at ⊢ Gf hx,
-  generalize_hyp : F.obj y = Fy at ⊢ Ff hy,
-  generalize_hyp : G.obj y = Gy at ⊢ Gf hy,
-  subst hx, subst hy, cases hf,
-  exact heq_of_eq rfl,
-end
--- similar idea to map_comp_heq
+by rw functor.hext hobj (λ _ _, hmap)
 
 lemma hcongr_hom {F G : C ⥤ D} (h : F = G) {X Y} (f : X ⟶ Y) :
   F.map f == G.map f :=
@@ -150,7 +127,7 @@ lemma self_eq_lift_obj (H : E ⥤ EQ F G) (x : E) :
 
 lemma self_eq_lift_map (H : E ⥤ EQ F G) {x y : E} (f : x ⟶ y) :
   (H ⋙ ι ⋙ F).map f == (H ⋙ ι ⋙ G).map f :=
-functor.precomp_map_heq _ ι_obj (λ _ _, ι_map) _
+functor.precomp_map_heq _ (λ _ _, ι_map) _
 
 /-- Any map into the equalizer is equal to the induced map from the
 universal property using the obvious composition-/
