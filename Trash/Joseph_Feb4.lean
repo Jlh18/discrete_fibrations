@@ -186,7 +186,7 @@ limits_from_equalizers_and_products
 
 /- BINARY PRODUCTS -/
 
-/-- The product of two categories is a category (category_theory.products.basic) -/
+-- The product of two categories is a category (category_theory.products.basic) -/
 def prod (C D : Cat.{v u}) : Cat.{v u} :=
 { α := (C.α × D.α) }
 
@@ -265,21 +265,13 @@ end prod
 instance : has_binary_products Cat.{v u} :=
 has_binary_products_of_has_limit_pair _
 
-/-- The terminal object in the category of categories -/
 def terminal : Cat.{v u} :=
 { α := punit,
   str := { hom := λ _ _, punit,
-           -- this punit : Type v should to be thought of as `star ⟶ star`
-           id := λ _, punit.star, -- there is only one map from `star → star`
-           comp := λ _ _ _ _ _, punit.star } }
-           -- the composition of this trivial map with itself is itself
-/-
-It turns out to be inconvenient to use `discrete punit`,
-and any results outside Cat.{v u}, e.g. a functor
-`C ⥤ terminal.α` might not be read as a morphism `C ⟶ terminal` in Cat
-This is because lean has a hard time getting the
-desired universe levels for the morphisms in the category `terminal.α`.
--/
+  -- this punit : Type v should to be thought of as `star ⟶ star`
+  id := λ _, punit.star, -- there is only one map from `star → star`
+  comp := λ _ _ _ _ _, punit.star } }
+  -- the composition of this trivial map with itself is itself
 
 namespace terminal
 
@@ -291,7 +283,7 @@ def lift : C ⟶ terminal :=
   map := λ _ _ _, punit.star } -- Note punit.star : punit : Type v
 
 /-- Uniqueness in the universal property of the terminal object -/
-lemma uniq : F = lift C :=
+def uniq : F = lift C :=
 functor.hext (λ _, punit.ext) (λ _ _ _, heq_of_eq punit.ext)
 
 instance : unique (C ⟶ Cat.terminal) :=
@@ -320,4 +312,77 @@ example : has_pullbacks Cat.{u u} :=
 
 end Cat
 
+namespace Cat
+
+-- def punit : Cat.{u u} := { α := discrete punit }
+
+-- def discrete_punit_level : category.{u} (discrete punit.{u}) := by apply_instance
+
+-- def whats_the_level : category.{u} Cat.punit.{u} := by apply_instance
+
+-- def Cat : Cat.{(max v u) (max v u)+1} := { α := Cat.{v u} }
+
+-- def over_punit : Cat.{u+1 u} := { α := over Cat.punit.{u} }
+
+def type : Cat.{u+1 u+1} := { α := Type u, str := ulift_category_hom }
+
+def under_punit : Cat.{u+1 u+1} :=
+{ α := @under (Type u) _ punit,
+  str := ulift_category_hom }
+
+-- def {w} elements {C : Cat.{v u}} (F : C ⥤ Type w) : Cat.{v (max u w)} :=
+-- { α := functor.elements F }
+
+namespace under_punit
+
+def forget' : @under (Type u) _ punit ⥤ Type u := under.forget punit
+
+def forget : under_punit ⟶ type := ulift_functor_hom (forget')
+
+end under_punit
+
+
+end Cat
+
+namespace elements
+
+open Cat
+
+variables {C : Cat.{u+1 u+1}} (F : C ⥤ Type u)
+
+def elements : Cat.{u+1 u+1} :=
+{ α := functor.elements F }
+
+def π : elements F ⟶ C := category_of_elements.π F
+
+def fiber : C ⟶ type :=
+{ obj := F.obj,
+  map := λ _ _ f, ulift.up (F.map f) }
+
+def elements_to_over_punit_functor : functor.elements F ⥤ @under (Type u) _ punit :=
+{ obj := λ ⟨c, x⟩, under.mk (λ _, x),
+  map := λ x y f, under.hom_mk (by {cases x, cases y,
+    erw [under.mk_right], erw [under.mk_right], exact F.map f})
+    (by {cases y, cases x, cases f with _ hf, dsimp at *, cases hf, refl}) }
+
+/-
+          π2
+  (c , x) ↦ F c
+  Σ F ---> under_punit
+ π |         |  forget
+   V         V
+   C ---> Type u
+      F
+-/
+
+#check functor.elements
+
+
+
+
+end elements
+
 end category_theory
+
+-- instance has_pullbacks : has_pullbacks Cat.{v u} :=
+-- by apply_instance
