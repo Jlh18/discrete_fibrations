@@ -62,6 +62,7 @@ lemma comp_map_heq (H : D ⥤ E) (hx : F.obj x = G.obj x) (hy : F.obj y = G.obj 
   (hmap : F.map f == G.map f) :
   (F ⋙ H).map f == (G ⋙ H).map f :=
 by { dsimp, congr' }
+-- inspired by the proof above, which was not my own
 
 lemma comp_map_heq' (H : D ⥤ E) (hobj : ∀ x : C, F.obj x = G.obj x)
   (hmap : ∀ {x y} (f : x ⟶ y), F.map f == G.map f) :

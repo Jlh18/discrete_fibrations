@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  3 FEB 2022 19:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  4 FEB 2022 10:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1283,38 +1283,50 @@ LaTeX Font Info:    Trying to load font information for U+rsfs on input line 47
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 4
-74.
+73.
 
 (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/m/n' instead on input line 494.
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 493.
+(mdframed)              on input line 496.
 LaTeX Font Info:    Trying to load font information for TS1+qpl on input line 5
-36.
-
+41.
 (/usr/share/texmf-dist/tex/latex/tex-gyre/ts1qpl.fd
 File: ts1qpl.fd 2009/09/25 v1.2 font definition file for TS1/qpl
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+Overfull \hbox (15.60426pt too wide) in paragraph at lines 694--699
+[]\T1/qpl/m/n/10 The ben-e-fit of this def-i-ni-tion is that one doesn't need t
+o deal with the ex-tra com-po-si-tions the orig-i-nal workaround
+ []
+
+[4] [5]
 No file Joseph.bbl.
-[4] (./Joseph.aux)
+[6] (./Joseph.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 Package rerunfilecheck Info: File `Joseph.out' has not changed.
-(rerunfilecheck)             Checksum: 4E2BCD8005C40803448947F3A5AC89EF;753.
+(rerunfilecheck)             Checksum: 6FBCDFD30B3DD514C90C696C84826FE3;2009.
  ) 
 Here is how much of TeX's memory you used:
- 29359 strings out of 478353
- 544135 string characters out of 5854636
- 950467 words of memory out of 5000000
- 46919 multiletter control sequences out of 15000+600000
- 452866 words of font info for 110 fonts, out of 8000000 for 9000
+ 29492 strings out of 478353
+ 545812 string characters out of 5854636
+ 1025467 words of memory out of 5000000
+ 46989 multiletter control sequences out of 15000+600000
+ 462846 words of font info for 117 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 100i,16n,104p,1195b,1248s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 100i,16n,104p,1195b,1252s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/t
-exmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}{/usr/share/texmf-dist/fonts/enc/dv
-ips/tex-gyre/q-ts1.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+exmf-dist/fonts/enc/dvips/tex-gyre/q-ts1.enc}{/usr/share/texmf-dist/fonts/enc/d
+vips/tex-gyre/q-ec.enc}</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 mi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/
 share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/p
@@ -1322,17 +1334,22 @@ ublic/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></
 usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texmf
 -dist/fonts/type1/public/mathabx-type1/matha10.pfb></usr/share/texmf-dist/fonts
-/type1/public/mathabx-type1/matha9.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/mathabx-type1/mathb9.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/q
-plb.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb></usr/share
-/texmf-dist/fonts/type1/public/tex-gyre/qplri.pfb></usr/share/texmf-dist/fonts/
-type1/public/cm-super/sftt0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm
--super/sftt0900.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1000
-.pfb>
-Output written on Joseph.pdf (4 pages, 328185 bytes).
+/type1/public/mathabx-type1/matha6.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/mathabx-type1/matha7.pfb></usr/share/texmf-dist/fonts/type1/public/mathabx-ty
+pe1/matha8.pfb></usr/share/texmf-dist/fonts/type1/public/mathabx-type1/matha9.p
+fb></usr/share/texmf-dist/fonts/type1/public/mathabx-type1/mathb9.pfb></usr/sha
+re/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/share/texmf-dist/fonts
+/type1/public/tex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/type1/public/tex-g
+yre/qplri.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfit0900.pfb><
+/usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/texm
+f-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/share/texmf-dist/fonts/ty
+pe1/public/cm-super/sftt1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-s
+uper/sftt1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1440.p
+fb>
+Output written on Joseph.pdf (6 pages, 417637 bytes).
 PDF statistics:
- 168 PDF objects out of 1000 (max. 8388607)
- 125 compressed objects within 2 object streams
- 30 named destinations out of 1000 (max. 500000)
- 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 303 PDF objects out of 1000 (max. 8388607)
+ 245 compressed objects within 3 object streams
+ 90 named destinations out of 1000 (max. 500000)
+ 109 words of extra memory for PDF output out of 10000 (max. 10000000)
 

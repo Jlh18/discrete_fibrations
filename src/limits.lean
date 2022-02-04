@@ -84,7 +84,7 @@ lift (λ i, c.π.app i)
 /-- The induced map from the universal property commutes with the diagram -/
 lemma fac (c : limits.cone F) (i : discrete I) :
   lift c ≫ (cone F).π.app i = c.π.app i :=
-by { rw self_eq_lift (lift c), apply functor.hext; { intros, refl } }
+functor.hext (λ _, rfl) (λ _ _ _, heq_of_eq rfl)
 -- thanks to Xu Junyan's golf for the binary product case (by using hext ← ext)
 
 /-- Uniqueness in the universal property of products -/
@@ -153,7 +153,7 @@ functor.hext (λ _, rfl) (λ _ _ _, heq_of_eq rfl)
 lemma uniq (c : category_theory.limits.fork F G) (m : c.X ⟶ (fork F G).X)
   (h : ∀ (j : walking_parallel_pair), m ≫ (fork F G).π.app j = c.π.app j) :
   m = is_limit_fork.lift c :=
-by{ rw equalizer.self_eq_lift m, congr, exact h walking_parallel_pair.zero }
+by { rw equalizer.self_eq_lift m, congr, exact h walking_parallel_pair.zero }
 -- golf inspired by Xu Junyan's idea for binary products
 -- (from 15 lines using self_eq_lift)
 

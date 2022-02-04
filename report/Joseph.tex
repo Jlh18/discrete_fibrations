@@ -468,8 +468,14 @@
 \author{Joseph Hua}
 \maketitle
 
-
 \section{Introduction}
+
+All of my work is in two files, \texttt{to\_mathlib.lean}
+(which contains lemmas that would be useful to have in various places in \texttt{mathlib})
+and \texttt{limits.lean}
+(which should ideally go in a folder for \texttt{Cat}, the category of categories).
+Some of the the content in those files is \textit{not} my own,
+and I have pointed this out each time in a comment.
 
 In this project, I show that \texttt{Cat.\{u u\}}, the category of small categories
 is complete, where ``small'' in \texttt{lean} is taken to mean
@@ -477,24 +483,21 @@ the universe levels (sizes) for objects and morphisms is the same.
 I also show that \texttt{Cat.\{v u\}}, the category of all categories
 (up to appropriate universe levels) has all finite limits.
 Since the category of categories is a bicategory,
-and it is quite rare in practice to work with strict equality of functors,
+and it is rare in practice to work with strict equality of functors,
 the ``morally correct'' limits to consider should really be 2-limits,
-where the functors are considered up to natural isomorphism.
-However, these are not considered here, since existence of 1-limits holds anyway.
+considering functors up to natural isomorphism.
+However, I construct 1-limits, since they exist anyway.
 This should deduce the 2-limit case, as equal funtors are trivially naturally isomorphic.
 
 An obvious next step is to show results for colimits, which I have not yet done.
 
-\section{Relevant definitions and results in mathlib}
-
-The category theory library in \texttt{mathlib} already contains definitions for
-limits, using cones over diagrams.
+\section{Relevant definitions and results in \texttt{mathlib}}
 
 \begin{dfn}[Diagrams, cones and limits]
   A diagram in a category $\CC$ is simply a functor from some category
   $F : \II \to \CC$, and $\II$ is called the shape.
   Diagrams are not explicitely defined in \texttt{lean},
-  as this would lead to extra unnecessary definitional equalities.
+  as this leads to extra unnecessary definitional equalities.
 
   % https://q.uiver.app/?q=WzAsNixbNiwwLCJcXG1hdGhjYWx7Rn0gaiJdLFs0LDAsIlxcbWF0aGNhbHtGfSBpIl0sWzAsMCwiaSJdLFsxLDAsImoiXSxbMiwwXSxbMywwXSxbMSwwLCJcXG1hdGhjYWx7Rn0gXFxwaGkiLDIseyJjdXJ2ZSI6M31dLFsxLDAsIlxcbWF0aGNhbHtGfSBcXHBzaSIsMCx7ImN1cnZlIjotM31dLFsyLDMsIlxccGhpIiwyLHsiY3VydmUiOjJ9XSxbMiwzLCJcXHBzaSIsMCx7ImN1cnZlIjotMn1dLFs0LDUsIiIsMix7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRvdHRlZCJ9fX1dXQ==
   \[\begin{tikzcd}
@@ -513,11 +516,13 @@ limits, using cones over diagrams.
   that commute with the maps in the diagram.
 
   \begin{lstlisting}
-    structure cone (F : J ⥤ C) :=
-    (X : C) (π : (const J).obj X ⟶ F) \end{lstlisting}
+    structure cone (F : J ⥤ C) := (X : C) (π : (const J).obj X ⟶ F) \end{lstlisting}
 
   Here \texttt{lean} recognizes that \texttt{F} is a functor,
-  so it infers that the categorical map into \texttt{F} should be
+  so it infers that the morphism ($\pi$)
+  \footnote{Unfortunately the arrows for morphisms (\texttt{\textbackslash hom} $\to$)
+    and for functions (\texttt{\textbackslash to} $\to$) look the same.}
+  into \texttt{F} should be
   in the functor fategory, i.e. a natural transformation.
 
     \[\begin{tikzcd}
@@ -585,7 +590,7 @@ All of the following are results from \texttt{mathlib} that I will be using in m
         Browsable \href{https://leanprover-community.github.io/mathlib_docs/category_theory/limits/constructions/limits_of_products_and_equalizers.html}{here}.
   \item The product of categories (as a category, \textit{not} as an object in \texttt{Cat.\{v u\}}).
         Browsable \href{https://leanprover-community.github.io/mathlib_docs/category_theory/pi/basic.html}{here}.
-  \item The binary product of categories (as a category. \textit{not} as an object in \texttt{Cat.\{v u\}}).
+  \item The binary product of categories (as a category, \textit{not} as an object in \texttt{Cat.\{v u\}}).
         Browsable \href{https://leanprover-community.github.io/mathlib_docs/category_theory/products/basic.html}{here}.
 \end{itemize}
 
@@ -593,24 +598,22 @@ All of the following are results from \texttt{mathlib} that I will be using in m
 
 In this section I walk through the general process of giving a limit,
 by following my work on binary products.
-This was the first example I worked on, and I think it
-demonstrates the process well, having the fewest technicalities.
 
 We begin by giving the object in the category of categories
 that we are interested in constructing.
-The definition of the category of categories essentially consists
+An object in the category of categories consists
 of two pieces of data, $\al$ the underlying type,
 and \texttt{str} an \texttt{instance} of $\al$ as a category.
-The second piece of data is given the parameter \texttt{obviously},
-so we need not specify it in our construction:
+The underlying type of the product is simply of product
+of the underlying types of \texttt{C} and \texttt{D}.
 
 \begin{lstlisting}
 def prod (C D : Cat.{v u}) : Cat.{v u} := { α := (C.α × D.α) } \end{lstlisting}
 
-The underlying type of the product is simply of product
-of the underlying types of \texttt{C} and \texttt{D}.
-The library already has \href{https://leanprover-community.github.io/mathlib_docs/category_theory/products/basic.html}{an \texttt{instance}}
-of this type as a category, so the type is all we need.
+The second piece of data is given the parameter \texttt{obviously},
+so we need not specify it:
+the library already has \href{https://leanprover-community.github.io/mathlib_docs/category_theory/products/basic.html}{an \texttt{instance}}
+of this type as a category.
 
 We promote this to a cone, by defining the natural transformation from
 the constant functor at \texttt{prod} to the diagram.
@@ -629,7 +632,6 @@ def cone (C D : Cat.{v u}) : cone (pair C D) :=
 We intend for this cone to be the limit.
 Which consists of a \texttt{lift}, \texttt{fac}torizations through the \texttt{lift},
 and \texttt{uniq}ness of the lift.
-
 Constructing the lift generally amounts to constructing maps for objects and morphisms
 by destructing the definition of the limit cone.
 In this particular case, since the limit cone is a product of categories,
@@ -649,16 +651,18 @@ We leave this discussion to the next section.
 
 \section{Equality between functors}
 
+\subsection{\texttt{heq}}
+
 In the introduction it was mentioned that strict equality between
 functors was not ``morally correct''.
 This is exemplified when we try to prove such an equality.
-Naively, extensionality for functors should say two functors $F G : \CC \to \DD$
-should be equal if and only if they are equal on objects and on morphisms.
+
+Naively, extensionality for functors should say two functors $F, G : \CC \to \DD$
+are equal if and only if they are equal on objects and on morphisms.
 However, type theory complicates this issue for morphisms.
 If $x$ and $y$ are objects in $\CC$ and we have proofs that $F x = G x$ and $F y = G y$,
-it doesn't make sense to ask for a morphism $f : x \to y$ whether $F f = G f$,
-because these are terms of types that are not definitionally equal.
-Namely $F f : F x \to F y$ and $G f : G x \to G y$.
+it doesn't make sense to ask given $f : x \to y$ whether $F f = G f$,
+because $F f : F x \to F y$ and $G f : G x \to G y$ are terms of types that are not definitionally equal.
 
 The obvious workaround to this issue is to instead ask for a commutative square
 where the sides are given by the equalities we have (equal objects are certainly isomorphic).
@@ -676,27 +680,186 @@ it can be improved with a clever trick.
 Instead of considering strict equality ($=$) on morphisms,
 Xu Junyan on Zulip suggested using \texttt{heq}uality ($==$) instead.
 This different version of equality is also a proposition whose only
-proof is \texttt{refl} (that the two terms are the same),
-but this question to be asked even when their ambient types are different.
+proof is \texttt{refl}
+(that the two terms are definitionally the same - in particular they are of the same type),
+but this question can be asked even when their ambient types are different.
 Hence in the above example I could simply write $F f == G f$,
 though I would not be able to prove it until I make the two sides
 definitionally equal.
+
+\begin{lstlisting}
+inductive heq {α : Sort u} (a : α) : Π {β : Sort u}, β → Prop
+| refl [] : heq a\end{lstlisting}
+
 The benefit of this definition is that one doesn't need to deal with the
 extra compositions the original workaround introduces.
-In the end whatever types we are working with should be equal
-anyway, so it is more straight forward to first imagine that they are and realise that
-this is the case later.
+In the end whatever types we are working with should be rewritten to be definitionally equal
+anyway, so it is more straight forward to first imagine that they are equal,
+and realise that our imagination was correct later on.
 
-A useful result from the library is \texttt{functor.hext},
-which says that two functors are equal if they are equal on objects and
+\subsection{The simplest case}
+I will list a few of methods I used to show that two functors are equal.
+
+The simplest case: after appropriate definitional simplification
+the functors are definitionally equal on objects and morphisms.
+
+A useful result from the library \texttt{functor.hext}
+says that two functors are equal if they are equal on objects and
 \texttt{heq}ual on morphisms.
+In this situation, applying \texttt{functor.hext} works well.
+The following is an example of this (for arbitrary products).
+The \texttt{lift} is defined \textit{so that} when it is
+destructed via composition with the legs of the cone it returns the right side.
 
-% Things I want to talk about
-% \item equality of functors -> definition of heq and comparison with eq
-% \item definition of equalizer wrt eq / heq
-% \item refactoring through lifts
-% \item universe levels for terminal object
-% \item why arbitrary products must be small
+\begin{lstlisting}
+lemma fac (c : limits.cone F) (i : discrete I) :
+  lift c ≫ (cone F).π.app i = c.π.app i :=
+functor.hext (λ _, rfl) (λ _ _ _, heq_of_eq rfl) \end{lstlisting}
+
+\subsection{Factoring through the lift}
+
+When one side of the equality has data but the other does not,
+we might need to introduce data on the side without.
+Here is an example (for equalizers):
+
+\begin{lstlisting}
+lemma uniq (c : category_theory.limits.fork F G) (m : c.X ⟶ (fork F G).X)
+  (h : ∀ (j : walking_parallel_pair), m ≫ (fork F G).π.app j = c.π.app j) :
+  m = is_limit_fork.lift c :=
+by { rw equalizer.self_eq_lift m, congr, exact h walking_parallel_pair.zero } \end{lstlisting}
+
+The first rewrite refactors the map \texttt{m} into the limit as a lift of itself
+composed with the maps into the diagram.
+This introduces data on the left,
+putting \texttt{m} into the same form as the right side
+(after unfolding what \texttt{is\_limit\_fork.lift} is).
+
+\subsection{Explicitely using the underlying type}
+
+To show that legs of any cone factor through the binary product \texttt{lift},
+I cased on the object in the shape for which I am concerned.
+This is basically induction on \texttt{Bool},
+and the resulting cases are fairly trivial.
+
+\begin{lstlisting}
+lemma fac (c : limits.cone (pair C D)) (j : walking_pair) :
+  lift c ≫ (cone C D).π.app j = c.π.app j :=
+walking_pair.cases_on j (lift_fst _) (lift_snd _)\end{lstlisting}
+
+\section{Equalizers with \texttt{heq}}
+
+My definition of the equalizers of two functors
+$F, G : \CC \to \DD$ takes the underlying type to be a
+subtype of objects $x$ in the source category $\CC$ such that $F x = G x$.
+The morphisms are taken to be the subtype of morphisms $f$ in
+each hom set such that $F f == G f$.
+The immediate (and so far only; the rest was straight-forward)
+issue that arises from using \texttt{heq} is composition in this category:
+if $f$ and $g$ are composable morphisms in $\CC$ such that
+$F f == G f$ and $F g == G g$, do we have that $F (f \gg g) == G (f \gg g)$?
+This fact is not immediately obvious.
+To prove this I would like to rewrite the first \texttt{heq}uality.
+Since $F f$ is not a variable,
+and induction/cases on an equality requires that the first term is a variable,
+we cannot case on the proof of $F f == G f$.
+One solution to this is generalizing the appropriate variables,
+using the \texttt{generalize\_hyp} tactic, given here (due to Xu Junyan).
+My explanations are in comments:
+
+\begin{lstlisting}
+lemma map_comp_heq (hx : F.obj x = G.obj x) (hy : F.obj y = G.obj y) (hz : F.obj z = G.obj z)
+  (hf : F.map f == G.map f) (hg : F.map g == G.map g) :
+  F.map (f ≫ g) == G.map (f ≫ g) :=
+begin
+  rw [F.map_comp, G.map_comp],
+  -- cannot case directly on hf, since F.map f is not a variable -> generalize F.map f
+  generalize_hyp : F.map f = Ff at ⊢ hf, generalize_hyp : G.map f = Gf at ⊢ hf,
+  generalize_hyp : F.map g = Fg at ⊢ hg, generalize_hyp : G.map g = Gg at ⊢ hg,
+  -- however, still cannot case on hf, since the types on the left and right are not definitionally equal
+  -- To make them definitionally equal, must case on x.2 y.2 z.2
+  -- Similarly, to case on x.2 and z.2 must generalize F.obj x, F.obj y, F.obj z
+  generalize_hyp : F.obj x = Fx at ⊢ Ff Gf hx,
+  generalize_hyp : F.obj y = Fy at ⊢ Fg Ff hy,
+  generalize_hyp : F.obj z = Fz at ⊢ Fg Gg hz,
+  -- now able to substitute -> all definitionally equal -> cases on hf hg
+  subst hx, subst hy, subst hz, cases hf, cases hg,
+  exact heq_of_eq rfl,
+end \end{lstlisting}
+
+However, I was then informed that the tactic \texttt{congr'}
+(but not \texttt{congr}) does almost all of the work.
+
+\begin{lstlisting}
+  lemma map_comp_heq (hx : F.obj x = G.obj x) (hy : F.obj y = G.obj y) (hz : F.obj z = G.obj z)
+  (hf : F.map f == G.map f) (hg : F.map g == G.map g) :
+  F.map (f ≫ g) == G.map (f ≫ g) :=
+  by { rw [F.map_comp, G.map_comp], congr' } \end{lstlisting}
+
+If I understand correctly,
+this is because \texttt{congr} has the tools for casing on the equalities,
+but ``agreessively'' first checks for syntactic similarities,
+resulting in goals such as $F = G$, which cannot be proven.
+On the other hand \texttt{congr'} first tries to apply
+equalities in the hypothesis, and succeeds.
+
+\section{Universe levels}
+
+As this is work on category theory in \texttt{lean},
+universe levels deserve attention.
+The first detail is sensible, and not a \texttt{lean} specific issue -
+that \texttt{Cat} needs to be a small category to be closed under arbitrary limits.
+The second was a design issue related to terminal objects.
+
+\subsection{Arbitrary products}
+
+Suppose that \texttt{Cat.\{v u\}} (not small) in general had all arbitrary limits.
+Then in particular \texttt{Cat.\{v u\}} would be closed under morphism sized products
+(this is the definition of having all limits in \texttt{lean}).
+Since morphisms are functors, which live in \texttt{Type max (v u)}
+this means for any discrete category \texttt{I : Type max (v u)}
+(discrete means it has no morphisms between objects),
+any diagram of shape \texttt{I} has a limit.
+(Informal) Our construction for the limit of this diagram will
+likely need to mention the indexing category \texttt{I},
+and in doing so will be a type with universe level at least \texttt{max (v u)}.
+However, the underlying types of objects in \texttt{Cat.\{v u\}} need to be in \texttt{Type u}.
+
+Instead forcing \texttt{v} and \texttt{u} to be (externally) equal,
+then taking the \texttt{max} keeps us in at the same level, and there is no issue.
+
+\subsection{The terminal category}
+
+The terminal category in \texttt{Cat.\{v u\}}
+should have an underlying type that looks like a singleton type,
+which is called \texttt{punit : Type u} in the library.
+Intuitively there should be only one morphism in this category,
+namely the identity on the unique object \texttt{punit.star}.
+
+The library contructs such a category more generally,
+by taking any type \texttt{X : Type u} and taking the hom
+sets between its terms \texttt{x y : X} to be the type \texttt{x = y}.
+The issue here is that this hom set is a proposition,
+so it must be lifted to the appropriate type by universe lifting.
+
+\[ \texttt{x = y : Prop : Type 0 : Type 1 : ...} \]
+
+The issue here is that it is hard to keep track of the universe we are lifting it to.
+The library gets around this by requiring \texttt{ulift (x = y) : Type u},
+so that the terminal category is a small category.
+However, this is not ideal here, since we want the hom set to be of level \texttt{v}.
+Thus I contruct another version of the terminal category.
+Since there is exactly one morphism between the obvious point,
+I also take the unique hom set to be \texttt{punit : Type v},
+but at level \texttt{v} (\texttt{punit} is polymorphic).
+
+\begin{lstlisting}
+def terminal : Cat.{v u} :=
+{ α := punit,
+  str := { hom := λ _ _, punit,
+           -- this punit : Type v should to be thought of as `star ⟶ star`
+           id := λ _, punit.star, -- there is only one map from `star → star`
+           comp := λ _ _ _ _ _, punit.star } }
+           -- the composition of this trivial map with itself is itself\end{lstlisting}
 
 
 
