@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  4 FEB 2022 10:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  4 FEB 2022 10:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1317,9 +1317,9 @@ Package rerunfilecheck Info: File `Joseph.out' has not changed.
 (rerunfilecheck)             Checksum: 6FBCDFD30B3DD514C90C696C84826FE3;2009.
  ) 
 Here is how much of TeX's memory you used:
- 29492 strings out of 478353
- 545812 string characters out of 5854636
- 1025467 words of memory out of 5000000
+ 29490 strings out of 478353
+ 545780 string characters out of 5854636
+ 1027467 words of memory out of 5000000
  46989 multiletter control sequences out of 15000+600000
  462846 words of font info for 117 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1346,10 +1346,10 @@ f-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/share/texmf-dist/fonts/ty
 pe1/public/cm-super/sftt1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-s
 uper/sftt1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1440.p
 fb>
-Output written on Joseph.pdf (6 pages, 417637 bytes).
+Output written on Joseph.pdf (6 pages, 417953 bytes).
 PDF statistics:
- 303 PDF objects out of 1000 (max. 8388607)
- 245 compressed objects within 3 object streams
- 90 named destinations out of 1000 (max. 500000)
+ 301 PDF objects out of 1000 (max. 8388607)
+ 243 compressed objects within 3 object streams
+ 88 named destinations out of 1000 (max. 500000)
  109 words of extra memory for PDF output out of 10000 (max. 10000000)
 
