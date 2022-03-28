@@ -115,9 +115,24 @@ section inverse_obj
 
 variables (Q : over P)
 
+/--
+  Given a presheaf `α : Q → P` in the overcategory of presheaf `P` and an object `⟨ X , p ⟩`
+  in the category of elements of `P`,
+  construct the pullback of the object `p` along the natural transformation at `X`
+  ```
+    inverse_obj_obj ──────→ *
+         |                   |
+         |                   | p
+         V                   V
+        Q X ──────────────→ P X
+                  α X
+  ```
+  This process is functorial by `category_theory.presheaf_elements.inverse`
+-/
 @[simp] def inverse_obj_obj : P.elements → Type u₀ :=
 λ ⟨ X , p ⟩, { q : Q.left.obj X // Q.hom.app X q = p }
 
+/-- The process `category_theory.presheaf_elements.inverse_obj_obj` is functorial -/
 @[simp] def inverse_obj_map : Π (X Y : P.elements) (h : X ⟶ Y),
   inverse_obj_obj Q X ⟶ inverse_obj_obj Q Y :=
 λ ⟨ X , pX ⟩ ⟨ Y , pY ⟩ ⟨ h , hcomm ⟩ ⟨ qX , hqX ⟩,
@@ -128,6 +143,13 @@ lemma inverse_obj_map_comp : Π (X Y Z : P.elements) (f : X ⟶ Y) (g : Y ⟶ Z)
 λ ⟨ X , pX ⟩ ⟨ Y , pY ⟩ ⟨ Z , pZ ⟩ ⟨ f , fcomm ⟩ ⟨ g , gcomm ⟩, funext $ λ ⟨ qX , hqX ⟩,
 by { dsimp only [category_theory.category_of_elements], simp }
 
+/--
+  Given a presheaf `Q : over P` in the overcategory of presheaf `P`,
+  construct a presheaf on the category of elements of `P` by taking pullbacks
+  (see `category_theory.presheaf_elements.inverse_obj_obj`).
+  This process is also `over P ⥤ P.elements ⥤ Type` is functorial by
+  `category_theory.presheaf_elements.inverse`
+-/
 @[simps] def inverse_obj : P.elements ⥤ Type u₀ :=
 { obj := inverse_obj_obj Q,
   map := λ _ _, inverse_obj_map Q _ _,
@@ -137,21 +159,19 @@ by { dsimp only [category_theory.category_of_elements], simp }
 
 end inverse_obj
 
-section inverse_map
-
-variables {Q₀ Q₁ : over P} (ν : Q₀ ⟶ Q₁)
-
-def inverse_map : (inverse_obj Q₀ ⟶ inverse_obj Q₁) :=
-{ app := _,
-  naturality' := _ }
-
-end inverse_map
-
+/--
+  For presheaves `Q : over P` in the overcategory of presheaf `P`,
+  functorially construct presheaves on the category of elements of `P` by taking pullbacks
+  (see `category_theory.presheaf_elements.inverse_obj_obj`).
+  This is the inverse of an equivalence `category_theory.presheaf_elements.equivalence`.
+-/
 def inverse : over P ⥤ P.elements ⥤ Type u₀ :=
 { obj := inverse_obj,
-  map := sorry,
-  map_id' := sorry,
-  map_comp' := sorry }
+  map := λ Q₀ Q₁ ν,
+    { app := λ ⟨ X , p ⟩ ⟨ q , qX ⟩, ⟨ ν.left.app X q ,
+        by {convert qX, exact congr_fun (congr_fun (congr_arg nat_trans.app ν.w) X) q } ⟩,
+      naturality' := λ ⟨ X , pY ⟩ ⟨ Y , pY ⟩ ⟨ h , hcomm ⟩, funext $ λ ⟨ q , hq ⟩,
+        subtype.ext (congr_fun (ν.left.naturality h) q) } }.
 
 def equivalence : (P.elements ⥤ Type u₀) ≌ over P :=
 { functor := to_presheaf_over,
