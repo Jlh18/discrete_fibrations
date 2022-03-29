@@ -60,6 +60,8 @@ lemma map_hom_mk_comp_heq_map_comp_apply {X Y Z : C} {p : P.obj X} {F : P.elemen
   F.map (hom_mk (h₀ ≫ h₁) rfl) f == F.map (hom_mk h₀ rfl ≫ hom_mk h₁ rfl) f :=
 heq.congr_fun (by simp) map_hom_mk_comp_heq_map_comp f
 
+namespace equivalence
+
 variable (F)
 
 /--
@@ -111,8 +113,6 @@ variables {F} {G : P.elements ⥤ Type u₀}
 { obj := λ F, over.mk ({ app := λ X, sigma.fst } : to_presheaf_obj F ⟶ P),
   map := λ F G α, over.hom_mk (to_presheaf_map α) }.
 
-section inverse_obj
-
 variables (Q : over P)
 
 /--
@@ -157,15 +157,13 @@ by { dsimp only [category_theory.category_of_elements], simp }
     by { dsimp only [category_theory.category_of_elements], simp },
   map_comp' := λ _ _ _, inverse_obj_map_comp _ _ _ _ }
 
-end inverse_obj
-
 /--
   For presheaves `Q : over P` in the overcategory of presheaf `P`,
   functorially construct presheaves on the category of elements of `P` by taking pullbacks
   (see `category_theory.presheaf_elements.inverse_obj_obj`).
   This is the inverse of an equivalence `category_theory.presheaf_elements.equivalence`.
 -/
-def inverse : over P ⥤ P.elements ⥤ Type u₀ :=
+@[simps] def inverse : over P ⥤ P.elements ⥤ Type u₀ :=
 { obj := inverse_obj,
   map := λ Q₀ Q₁ ν,
     { app := λ ⟨ X , p ⟩ ⟨ q , qX ⟩, ⟨ ν.left.app X q ,
@@ -173,12 +171,40 @@ def inverse : over P ⥤ P.elements ⥤ Type u₀ :=
       naturality' := λ ⟨ X , pY ⟩ ⟨ Y , pY ⟩ ⟨ h , hcomm ⟩, funext $ λ ⟨ q , hq ⟩,
         subtype.ext (congr_fun (ν.left.naturality h) q) } }.
 
+def unit_iso_hom : 𝟭 (P.elements ⥤ Type u₀) ⟶ to_presheaf_over ⋙ inverse :=
+{ app := λ _, { app := λ ⟨ X , p ⟩ f, ⟨ ⟨ p , f ⟩ , rfl ⟩ } }
+
+def unit_iso_inv : to_presheaf_over ⋙ inverse ⟶ 𝟭 (P.elements ⥤ Type u₀) :=
+{ app := λ F, { app := λ ⟨ X , p ⟩ ⟨ ⟨ p' , f ⟩ , hq ⟩, eq.mp (by {congr, exact hq}) f }}
+
+def unit_iso : 𝟭 (P.elements ⥤ Type u₀) ≅ to_presheaf_over ⋙ inverse :=
+{ hom := unit_iso_hom,
+  inv := unit_iso_inv }
+
+def counit_iso_hom : inverse ⋙ to_presheaf_over ⟶ 𝟭 (over P) :=
+{ app := λ Q, over.hom_mk { app := λ X ⟨ p , ⟨ q , hq ⟩⟩, q }
+ (by { ext X q, obtain ⟨ p , ⟨ q , hq ⟩⟩ := q, exact hq }) }.
+
+def counit_iso_inv : 𝟭 (over P) ⟶ inverse ⋙ to_presheaf_over :=
+{ app := λ Q, over.hom_mk
+  { app := λ X q, ⟨ Q.hom.app X q , ⟨ q , rfl ⟩ ⟩,
+    naturality' := λ X Y h, funext $ λ q,
+      by {ext, {exact congr_fun (Q.hom.naturality h) q}, {refl}}}
+  (by {ext X q, refl}),
+  naturality' := λ Q₀ Q₁ ν, by { ext X q,
+    { exact congr_fun (congr_fun (congr_arg nat_trans.app ν.w) X) q }, { refl }}}
+
+def counit_iso : inverse ⋙ to_presheaf_over ≅ 𝟭 (over P) :=
+{ hom := counit_iso_hom,
+  inv := counit_iso_inv }.
+
+end equivalence
+
 def equivalence : (P.elements ⥤ Type u₀) ≌ over P :=
-{ functor := to_presheaf_over,
-  inverse := inverse,
-  unit_iso := sorry,
-  counit_iso := sorry,
-  functor_unit_iso_comp' := sorry }
+{ functor := equivalence.to_presheaf_over,
+  inverse := equivalence.inverse,
+  unit_iso := equivalence.unit_iso,
+  counit_iso := equivalence.counit_iso }
 
 end presheaf_elements
 
