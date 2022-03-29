@@ -129,7 +129,8 @@ variables (Q : over P)
   ```
   This process is functorial by `category_theory.presheaf_elements.inverse`
 -/
-@[simp] def inverse_obj_obj : P.elements → Type u₀ :=
+@[simp, nolint has_inhabited_instance]
+def inverse_obj_obj : P.elements → Type u₀ :=
 λ ⟨ X , p ⟩, { q : Q.left.obj X // Q.hom.app X q = p }
 
 /-- The process `category_theory.presheaf_elements.inverse_obj_obj` is functorial -/
