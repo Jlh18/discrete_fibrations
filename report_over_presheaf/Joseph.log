@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  29 MAR 2022 19:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  29 MAR 2022 22:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1151,13 +1151,13 @@ File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
 Package: listings 2020/03/24 1.8d (Carsten Heinz)
-LaTeX Font Info:    Redeclaring symbol font `mathx' on input line 259.
+LaTeX Font Info:    Redeclaring symbol font `mathx' on input line 260.
 LaTeX Font Info:    Overwriting symbol font `mathx' in version `normal'
-(Font)                  U/mathx/m/n --> U/mathx/m/n on input line 259.
+(Font)                  U/mathx/m/n --> U/mathx/m/n on input line 260.
 LaTeX Font Info:    Overwriting symbol font `mathx' in version `bold'
-(Font)                  U/mathx/m/n --> U/mathx/m/n on input line 259.
-LaTeX Font Info:    Redeclaring math accent \widecheck on input line 261.
-Package hyperref Info: Option `colorlinks' set `true' on input line 295.
+(Font)                  U/mathx/m/n --> U/mathx/m/n on input line 260.
+LaTeX Font Info:    Redeclaring math accent \widecheck on input line 262.
+Package hyperref Info: Option `colorlinks' set `true' on input line 296.
 \c@dfn=\count331
 \c@prop=\count332
 \c@cor=\count333
@@ -1169,31 +1169,31 @@ Package hyperref Info: Option `colorlinks' set `true' on input line 295.
 \c@pp@a@footnote=\count339
  (./lstlean.tex)
 LaTeX Font Info:    Trying to load font information for T1+qpl on input line 47
-0.
+1.
 
 (/usr/share/texmf-dist/tex/latex/tex-gyre/t1qpl.fd
 File: t1qpl.fd 2009/09/25 v1.2 font definition file for T1/qpl
 ) (./Joseph.aux)
 \openout1 = `Joseph.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 470.
-LaTeX Font Info:    ... okay on input line 470.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 470.
-LaTeX Font Info:    ... okay on input line 470.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 470.
-LaTeX Font Info:    ... okay on input line 470.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 470.
-LaTeX Font Info:    ... okay on input line 470.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 470.
-LaTeX Font Info:    ... okay on input line 470.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 470.
-LaTeX Font Info:    ... okay on input line 470.
-LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 470.
-LaTeX Font Info:    ... okay on input line 470.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 470.
-LaTeX Font Info:    ... okay on input line 470.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 470.
-LaTeX Font Info:    ... okay on input line 470.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 471.
+LaTeX Font Info:    ... okay on input line 471.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 471.
+LaTeX Font Info:    ... okay on input line 471.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 471.
+LaTeX Font Info:    ... okay on input line 471.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 471.
+LaTeX Font Info:    ... okay on input line 471.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 471.
+LaTeX Font Info:    ... okay on input line 471.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 471.
+LaTeX Font Info:    ... okay on input line 471.
+LaTeX Font Info:    Checking defaults for U/mathx/m/n on input line 471.
+LaTeX Font Info:    ... okay on input line 471.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 471.
+LaTeX Font Info:    ... okay on input line 471.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 471.
+LaTeX Font Info:    ... okay on input line 471.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1251,70 +1251,96 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring ON on input line 470.
-LaTeX Info: Redefining \ref on input line 470.
-LaTeX Info: Redefining \pageref on input line 470.
-LaTeX Info: Redefining \nameref on input line 470.
+Package hyperref Info: Link coloring ON on input line 471.
+LaTeX Info: Redefining \ref on input line 471.
+LaTeX Info: Redefining \pageref on input line 471.
+LaTeX Info: Redefining \nameref on input line 471.
  (./Joseph.out)
 (./Joseph.out)
 \@outlinefile=\write4
 \openout4 = `Joseph.out'.
 
 \c@lstlisting=\count346
-LaTeX Font Info:    Trying to load font information for U+msa on input line 474
+LaTeX Font Info:    Trying to load font information for U+msa on input line 475
 .
  (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 474
+LaTeX Font Info:    Trying to load font information for U+msb on input line 475
 .
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for U+stmry on input line 4
-74.
+75.
 
 (/usr/share/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 LaTeX Font Info:    Trying to load font information for U+rsfs on input line 47
-4.
+5.
 
 (/usr/share/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 4
-77.
+84.
 
 (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-No file Joseph.bbl.
-[1
+) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./Joseph.aux)
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+
+LaTeX Font Warning: Font shape `T1/cmtt/b/n' undefined
+(Font)              using `T1/cmtt/m/n' instead on input line 566.
+
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 592
+.
+(/usr/share/texmf-dist/tex/latex/bbm-macros/ubbm.fd
+File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
+) [2]
+No file Joseph.bbl.
+[3] [4] (./Joseph.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
 Package rerunfilecheck Info: File `Joseph.out' has not changed.
-(rerunfilecheck)             Checksum: 56E26ECED4AB6FF7F6495497618B029B;91.
+(rerunfilecheck)             Checksum: 113B671DD21F53D3C008339E467350AB;692.
  ) 
 Here is how much of TeX's memory you used:
- 28608 strings out of 478353
- 531799 string characters out of 5854636
- 837481 words of memory out of 5000000
- 46209 multiletter control sequences out of 15000+600000
- 433994 words of font info for 90 fonts, out of 8000000 for 9000
+ 29272 strings out of 478353
+ 541920 string characters out of 5854636
+ 1040997 words of memory out of 5000000
+ 46787 multiletter control sequences out of 15000+600000
+ 456169 words of font info for 115 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 100i,6n,104p,1195b,326s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/t
-exmf-dist/fonts/enc/dvips/tex-gyre/q-ec.enc}</usr/share/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
-></usr/share/texmf-dist/fonts/type1/public/mathabx-type1/matha10.pfb></usr/shar
-e/texmf-dist/fonts/type1/public/tex-gyre/qplb.pfb></usr/share/texmf-dist/fonts/
-type1/public/tex-gyre/qplr.pfb></usr/share/texmf-dist/fonts/type1/public/cm-sup
-er/sftt1000.pfb>
-Output written on Joseph.pdf (1 page, 151375 bytes).
+ 100i,15n,104p,1195b,994s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/jlh/.texlive/texmf-var/fonts/pk/ljfour/public/bbm/bbm9.600pk>{/usr/sh
+are/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/share/texmf-dist/
+fonts/enc/dvips/tex-gyre/q-ec.enc}</usr/share/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5
+.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/shar
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/sh
+are/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/pub
+lic/mathabx-type1/matha10.pfb></usr/share/texmf-dist/fonts/type1/public/mathabx
+-type1/matha7.pfb></usr/share/texmf-dist/fonts/type1/public/mathabx-type1/matha
+8.pfb></usr/share/texmf-dist/fonts/type1/public/mathabx-type1/matha9.pfb></usr/
+share/texmf-dist/fonts/type1/public/mathabx-type1/mathb10.pfb></usr/share/texmf
+-dist/fonts/type1/public/mathabx-type1/mathb7.pfb></usr/share/texmf-dist/fonts/
+type1/public/mathabx-type1/mathb9.pfb></usr/share/texmf-dist/fonts/type1/public
+/tex-gyre/qplb.pfb></usr/share/texmf-dist/fonts/type1/public/tex-gyre/qplr.pfb>
+</usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/share/tex
+mf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/share/texmf-dist/fonts/t
+ype1/public/cm-super/sftt1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm-
+super/sftt1200.pfb>
+Output written on Joseph.pdf (4 pages, 335036 bytes).
 PDF statistics:
- 58 PDF objects out of 1000 (max. 8388607)
- 40 compressed objects within 1 object stream
- 3 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 252 PDF objects out of 1000 (max. 8388607)
+ 197 compressed objects within 2 object streams
+ 71 named destinations out of 1000 (max. 500000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

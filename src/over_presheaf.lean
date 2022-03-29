@@ -34,7 +34,7 @@ lemma map_hom_mk_id_heq_map_id
   {X : C} {p : P.obj X} {F : P.elements ⥤ Type u₀} :
   (F.map (hom_mk (𝟙 X) rfl) : F.obj ⟨ X , p ⟩ ⟶ F.obj ⟨ X , P.map (𝟙 X) p⟩)
     == F.map (𝟙 ⟨ X , p ⟩) :=
-by { dsimp only [hom_mk, obj_mk, category_theory.category_of_elements], congr', {simp}, {simp} }
+by { congr', {simp}, {simp} }
 
 lemma map_hom_mk_id_heq_map_id_apply
   {X : C} {p : P.obj X} {F : P.elements ⥤ Type u₀} (f : F.obj ⟨ X , p ⟩) :
@@ -66,11 +66,11 @@ variable (F)
 { obj := λ X, Σ p : P.obj X, F.obj ⟨ X , p ⟩,
   map := λ X Y h, λ ⟨ p , f ⟩, ⟨ P.map h p , F.map (hom_mk h rfl) f ⟩,
   map_id' := λ X, funext $ λ ⟨ p , f ⟩,
-  by { ext, { simp [to_presheaf_obj._match_1] },
-    { apply heq.trans (map_hom_mk_id_heq_map_id_apply f), simpa }},
+    by { ext, { simp [to_presheaf_obj._match_1] },
+      { apply heq.trans (map_hom_mk_id_heq_map_id_apply f), simpa }},
   map_comp' := λ X Y Z h₀ h₁, funext $ λ ⟨ p , f ⟩,
-  by { ext , { simp [to_presheaf_obj._match_1] },
-    { apply heq.trans (map_hom_mk_comp_heq_map_comp_apply f), simpa }}}
+    by { ext , { simp [to_presheaf_obj._match_1] },
+      { apply heq.trans (map_hom_mk_comp_heq_map_comp_apply f), simpa }}}
 
 variables {F} {G : P.elements ⥤ Type u₀}
 
@@ -195,7 +195,7 @@ def counit_iso_inv : 𝟭 (over P) ⟶ inverse ⋙ to_presheaf_over :=
 /-- Part of `category_theory.presheaf_elements.equivalence`-/
 def counit_iso : inverse ⋙ to_presheaf_over ≅ 𝟭 (over P) :=
 { hom := counit_iso_hom,
-  inv := counit_iso_inv }
+  inv := counit_iso_inv }.
 
 end equivalence
 

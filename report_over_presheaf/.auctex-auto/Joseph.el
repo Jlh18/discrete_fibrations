@@ -81,6 +81,7 @@
     '("bigop" 1)
     '("sqbrkt" 1)
     '("brkt" 1)
+    "functor"
     "dash"
     "tdt"
     "IFF"
