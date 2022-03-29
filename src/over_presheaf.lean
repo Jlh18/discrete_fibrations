@@ -171,20 +171,25 @@ by { dsimp only [category_theory.category_of_elements], simp }
       naturality' := λ ⟨ X , pY ⟩ ⟨ Y , pY ⟩ ⟨ h , hcomm ⟩, funext $ λ ⟨ q , hq ⟩,
         subtype.ext (congr_fun (ν.left.naturality h) q) } }.
 
+/-- Part of `category_theory.presheaf_elements.unit_iso`-/
 def unit_iso_hom : 𝟭 (P.elements ⥤ Type u₀) ⟶ to_presheaf_over ⋙ inverse :=
 { app := λ _, { app := λ ⟨ X , p ⟩ f, ⟨ ⟨ p , f ⟩ , rfl ⟩ } }
 
+/-- Part of `category_theory.presheaf_elements.unit_iso`-/
 def unit_iso_inv : to_presheaf_over ⋙ inverse ⟶ 𝟭 (P.elements ⥤ Type u₀) :=
 { app := λ F, { app := λ ⟨ X , p ⟩ ⟨ ⟨ p' , f ⟩ , hq ⟩, eq.mp (by {congr, exact hq}) f }}
 
+/-- Part of `category_theory.presheaf_elements.equivalence`-/
 def unit_iso : 𝟭 (P.elements ⥤ Type u₀) ≅ to_presheaf_over ⋙ inverse :=
 { hom := unit_iso_hom,
   inv := unit_iso_inv }
 
+/-- Part of `category_theory.presheaf_elements.counit_iso`-/
 def counit_iso_hom : inverse ⋙ to_presheaf_over ⟶ 𝟭 (over P) :=
 { app := λ Q, over.hom_mk { app := λ X ⟨ p , ⟨ q , hq ⟩⟩, q }
  (by { ext X q, obtain ⟨ p , ⟨ q , hq ⟩⟩ := q, exact hq }) }.
 
+/-- Part of `category_theory.presheaf_elements.counit_iso`-/
 def counit_iso_inv : 𝟭 (over P) ⟶ inverse ⋙ to_presheaf_over :=
 { app := λ Q, over.hom_mk
   { app := λ X q, ⟨ Q.hom.app X q , ⟨ q , rfl ⟩ ⟩,
@@ -194,12 +199,17 @@ def counit_iso_inv : 𝟭 (over P) ⟶ inverse ⋙ to_presheaf_over :=
   naturality' := λ Q₀ Q₁ ν, by { ext X q,
     { exact congr_fun (congr_fun (congr_arg nat_trans.app ν.w) X) q }, { refl }}}
 
+/-- Part of `category_theory.presheaf_elements.equivalence`-/
 def counit_iso : inverse ⋙ to_presheaf_over ≅ 𝟭 (over P) :=
 { hom := counit_iso_hom,
   inv := counit_iso_inv }.
 
 end equivalence
 
+/--
+  The category of presheaves on the category of elements of a presheaf `P`
+  is equivalent to the overcategory of `P`.
+-/
 def equivalence : (P.elements ⥤ Type u₀) ≌ over P :=
 { functor := equivalence.to_presheaf_over,
   inverse := equivalence.inverse,
