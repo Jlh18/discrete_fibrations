@@ -6,16 +6,8 @@ import category_theory.limits.shapes.products
 
 universes v₀ u₀ v₁ u₁
 
-namespace heq
-
-lemma congr_fun {α β₀ β₁ : Type*} {f₀ : α → β₀} {f₁ : α → β₁} (hβ : β₀ = β₁) (hf : f₀ == f₁)
+lemma hcongr_fun {α β₀ β₁ : Type*} {f₀ : α → β₀} {f₁ : α → β₁} (hβ : β₀ = β₁) (hf : f₀ == f₁)
   (a : α) : f₀ a == f₁ a := by { subst hβ, subst hf }
-
-protected lemma funext {α β₀ β₁ : Type*} {f₀ : α → β₀} {f₁ : α → β₁} (hβ : β₀ = β₁)
-  (hf : Π a, f₀ a == f₁ a) : f₀ == f₁ :=
-by { subst hβ, apply heq_of_eq, funext, exact eq_of_heq (hf _), }
-
-end heq
 
 namespace category_theory
 
@@ -47,7 +39,7 @@ by { dsimp only [hom_mk, obj_mk, category_theory.category_of_elements], congr', 
 lemma map_hom_mk_id_heq_map_id_apply
   {X : C} {p : P.obj X} {F : P.elements ⥤ Type u₀} (f : F.obj ⟨ X , p ⟩) :
   F.map (hom_mk (𝟙 X) rfl) f == F.map (𝟙 _) f :=
-heq.congr_fun (by simpa) map_hom_mk_id_heq_map_id f
+hcongr_fun (by simpa) map_hom_mk_id_heq_map_id f
 
 lemma map_hom_mk_comp_heq_map_comp {X Y Z : C} {p : P.obj X} {F : P.elements ⥤ Type u₀}
   {h₀ : X ⟶ Y} {h₁ : Y ⟶ Z} :
@@ -58,7 +50,7 @@ by { congr'; simp }
 lemma map_hom_mk_comp_heq_map_comp_apply {X Y Z : C} {p : P.obj X} {F : P.elements ⥤ Type u₀}
   {h₀ : X ⟶ Y} {h₁ : Y ⟶ Z} (f : F.obj ⟨ X , p ⟩) :
   F.map (hom_mk (h₀ ≫ h₁) rfl) f == F.map (hom_mk h₀ rfl ≫ hom_mk h₁ rfl) f :=
-heq.congr_fun (by simp) map_hom_mk_comp_heq_map_comp f
+hcongr_fun (by simp) map_hom_mk_comp_heq_map_comp f
 
 namespace equivalence
 
@@ -111,7 +103,7 @@ variables {F} {G : P.elements ⥤ Type u₀}
 -/
 @[simps] def to_presheaf_over : (P.elements ⥤ Type u₀) ⥤ over P :=
 { obj := λ F, over.mk ({ app := λ X, sigma.fst } : to_presheaf_obj F ⟶ P),
-  map := λ F G α, over.hom_mk (to_presheaf_map α) }.
+  map := λ F G α, over.hom_mk (to_presheaf_map α) }
 
 variables (Q : over P)
 
@@ -188,7 +180,7 @@ def unit_iso : 𝟭 (P.elements ⥤ Type u₀) ≅ to_presheaf_over ⋙ inverse 
 /-- Part of `category_theory.presheaf_elements.counit_iso`-/
 def counit_iso_hom : inverse ⋙ to_presheaf_over ⟶ 𝟭 (over P) :=
 { app := λ Q, over.hom_mk { app := λ X ⟨ p , ⟨ q , hq ⟩⟩, q }
- (by { ext X q, obtain ⟨ p , ⟨ q , hq ⟩⟩ := q, exact hq }) }.
+ (by { ext X q, obtain ⟨ p , ⟨ q , hq ⟩⟩ := q, exact hq }) }
 
 /-- Part of `category_theory.presheaf_elements.counit_iso`-/
 def counit_iso_inv : 𝟭 (over P) ⟶ inverse ⋙ to_presheaf_over :=
@@ -203,7 +195,7 @@ def counit_iso_inv : 𝟭 (over P) ⟶ inverse ⋙ to_presheaf_over :=
 /-- Part of `category_theory.presheaf_elements.equivalence`-/
 def counit_iso : inverse ⋙ to_presheaf_over ≅ 𝟭 (over P) :=
 { hom := counit_iso_hom,
-  inv := counit_iso_inv }.
+  inv := counit_iso_inv }
 
 end equivalence
 
