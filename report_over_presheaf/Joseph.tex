@@ -677,7 +677,7 @@ given extensionally as a map between sigma types such that for each
 generalized element $p$ of $X$ under $P$, the diagram commutes
 \[\begin{tikzcd}
 	{F \< X , p \>} & {G\<X,p\>} \\
-	\bullet & PX
+	\star & PX
 	\arrow["{\alpha _X}", from=1-1, to=1-2]
 	\arrow["f", from=2-1, to=1-1]
 	\arrow["p"', from=2-1, to=2-2]
@@ -690,6 +690,7 @@ we use extensionality on the sigma type to check naturality,
 and it follows from naturality of $\al$,
 i.e. the outer square commutes because each inner square commutes,
 where going to the inner square is extensionality.
+Luckily, no \texttt{heq} is needed here, as the types are definitionally equal.
 \[\begin{tikzcd}
 	F & G && {\Sigma_p F\<X,p\>} &&& {\Sigma_p G\<X,p\>} \\
 	X & {\< X , p \>} &&& {F\<X,p\>} & {G\<X,p\>} \\
@@ -713,15 +714,182 @@ where going to the inner square is extensionality.
 \end{tikzcd}\]
 
 We finally turn this into a functor into the over category,
-where the maps down to $P$ are projections onto the first component
-of the sigma type $\Sigma_{p} F \< X , p \>$ for each $X$.
+where each natural transformation down to $P$ is given by projection
+onto the first component of the sigma type $\Sigma_{p} F \< X , p \>$ for each $X$.
 
 \begin{lstlisting}
-def to_presheaf_over : (P.elements ⥤ Type u₀) ⥤ over P :=
-{ obj := λ F, over.mk ({ app := λ X, sigma.fst } : to_presheaf_obj F ⟶ P),
-  map := λ F G α, over.hom_mk (to_presheaf_map α) } \end{lstlisting}
+  def to_presheaf_over : (P.elements ⥤ Type u₀) ⥤ over P :=
+  { obj := λ F, over.mk ({ app := λ X, sigma.fst } : to_presheaf_obj F ⟶ P),
+    map := λ F G α, over.hom_mk (to_presheaf_map α) } \end{lstlisting}
 
 \section{Backwards}
+
+To make an inverse functor we fix a preseheaf $Q : \CC \to \UU$
+with $\al : Q \implies P$,
+and construct a presheaf on $\Sigma P$.
+We first do so on objects, taking any object $\< X , p \> : \Sigma P$
+to the pullback
+
+\[\begin{tikzcd}
+	{\alpha_X^{-1}p} & \star \\
+	{Q X} & {P X}
+	\arrow["p", from=1-2, to=2-2]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=1-1, to=1-2]
+	\arrow[dashed, hook, from=1-1, to=2-1]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-1, to=2-2]
+\end{tikzcd}\]
+
+Rather than using the abstract existence of pullbacks in \texttt{Type},
+we construct it as the preimage of $p$ (as a subtype of $Q X$),
+under $\alpha_{X}$.
+
+\subsection{ On objects (\texttt{inverse}) }
+
+\subsubsection{ On objects (\texttt{inverse\_obj}) }
+\begin{lstlisting}
+  def inverse_obj_obj : P.elements → Type u₀ :=
+  λ ⟨ X , p ⟩, { q : Q.left.obj X // Q.hom.app X q = p } \end{lstlisting}
+
+We extend this to a functor $\Sigma P \functor \UU$.
+Suppose $pX : P X$ and $pY : P Y$.
+Given a morphism $h : X \to Y$ in the category of elements by having a
+commuting property $\texttt{hcomm}: P h pX = pY$,
+the pullback property of $\al_{Y}^{-1} pY$ gives a map
+from $\al_{X}^{-1} pX$, viewed as a cone over the diagram.
+\[\begin{tikzcd}
+	& {\alpha_X^{-1}pX} && \star \\
+	& {Q X} && {P X} \\
+	{\alpha_Y^{-1}pY} && \star \\
+	{Q Y} && {P Y}
+	\arrow[color={rgb,255:red,92;green,92;blue,214}, from=1-2, to=1-4]
+	\arrow["pX"{description}, from=1-4, to=2-4]
+	\arrow[color={rgb,255:red,214;green,92;blue,92}, from=1-2, to=2-2]
+	\arrow["{\alpha_X}"{description, pos=0.7}, from=2-2, to=2-4]
+	\arrow[dashed, from=1-2, to=3-1]
+	\arrow["Qh"{description, pos=0.4}, color={rgb,255:red,214;green,92;blue,92}, from=2-2, to=4-1]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{P h}"{description, pos=0.4}, from=2-4, to=4-3]
+	\arrow["{\alpha_Y}"{description, pos=0.7}, color={rgb,255:red,214;green,92;blue,92}, from=4-1, to=4-3]
+	\arrow[from=3-1, to=4-1]
+	\arrow[color={rgb,255:red,92;green,92;blue,214}, from=1-4, to=3-3]
+	\arrow["pY"{description}, color={rgb,255:red,92;green,92;blue,214}, from=3-3, to=4-3]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=3-1, to=4-3]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-2, to=2-4]
+\end{tikzcd}\]
+In our construction we explicitely give the induced morphism,
+which is as the ``restriction of $Q h$ to $\al_{X}^{-1} pX$'',
+consisting of the map $Q h$ on elements and a proof that the image is sent to
+$pY$.
+The image is sent to $pY$ if and only if the blue and red maps
+(the legs of the pullback cone) commute.
+The latter holds because the right face commutes by \texttt{homm},
+the back face commutes by the pullback property defining $\al_{X}^{-1}pX$
+(in the proof this appears as \texttt{hqX}),
+and the bottom face commutes by naturality of $\alpha$.
+
+\subsubsection{ Functoriality (\texttt{inverse\_obj})}
+
+\begin{lstlisting}
+  def inverse_obj_map : Π (X Y : P.elements) (h : X ⟶ Y),
+    inverse_obj_obj Q X ⟶ inverse_obj_obj Q Y :=
+  λ ⟨ X , pX ⟩ ⟨ Y , pY ⟩ ⟨ h , hcomm ⟩ ⟨ qX , hqX ⟩,
+    ⟨ Q.left.map h qX , by { convert hcomm, rw ← hqX, exact congr_fun (Q.hom.naturality h) qX } ⟩ \end{lstlisting}
+
+Again, \texttt{obviously} cannot generate code for this functor preserving
+the identity and composition.
+This time it is because we need to use functional extensionality and case
+on the points in the sigma type, which is straight forward.
+
+\begin{lstlisting}
+def inverse_obj : P.elements ⥤ Type u₀ :=
+{ obj := inverse_obj_obj Q,
+  map := λ _ _, inverse_obj_map Q _ _,
+  map_id' := λ ⟨ X , p ⟩, funext $ λ ⟨ q , hq ⟩, by { simp ... },
+  map_comp' := λ ⟨ X , pX ⟩ ⟨ Y , pY ⟩ ⟨ Z , pZ ⟩ ⟨ f , fcomm ⟩ ⟨ g , gcomm ⟩,
+    funext $ λ ⟨ qX , hqX ⟩, by { simp ... }\end{lstlisting}
+
+\subsection{ Functoriality \texttt{inverse} }
+
+We need to construct for each natural transformation $\nu : Q_{0} \implies Q_{1}$
+of presheaves over the presheaf $P$, a natural transformation
+\texttt{inverse\_obj $Q_0 \implies $ inverse\_obj $Q_{1}$}.
+To make such a natural transformation,
+we need a map for each object $\< X , p \> : \Sigma P$,
+\begin{lstlisting}
+  { q : Q₀.left.obj X // Q₀.hom.app X q = p } ⟶ { q : Q₁.left.obj X // Q₁.hom.app X q = p }
+\end{lstlisting}
+which we write as
+\[ \al_{0}^{-1}(p) \to \al_{1}^{-1}(p)\]
+Via pullbacks it is given by the universal property of $\al_{1}^{-1}(p)$
+in the following diagram:
+\[\begin{tikzcd}
+	& {\alpha_0^{-1}p} && \star \\
+	& {Q_0 X} && {P X} \\
+	{\alpha_1^{-1}p} && \star \\
+	{Q_1 X} && {P X}
+	\arrow[color={rgb,255:red,92;green,92;blue,214}, from=1-2, to=1-4]
+	\arrow["p"{description}, from=1-4, to=2-4]
+	\arrow[color={rgb,255:red,214;green,92;blue,92}, from=1-2, to=2-2]
+	\arrow["{\alpha_0}"{description, pos=0.7}, from=2-2, to=2-4]
+	\arrow[dashed, from=1-2, to=3-1]
+	\arrow["Qh"{description, pos=0.4}, color={rgb,255:red,214;green,92;blue,92}, from=2-2, to=4-1]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{\id{}{}}"{description, pos=0.4}, from=2-4, to=4-3]
+	\arrow["{\alpha_1}"{description, pos=0.7}, color={rgb,255:red,214;green,92;blue,92}, from=4-1, to=4-3]
+	\arrow[from=3-1, to=4-1]
+	\arrow[color={rgb,255:red,92;green,92;blue,214}, from=1-4, to=3-3]
+	\arrow["p"{description}, color={rgb,255:red,92;green,92;blue,214}, from=3-3, to=4-3]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=3-1, to=4-3]
+	\arrow["\lrcorner"{anchor=center, pos=0.125}, draw=none, from=1-2, to=2-4]
+\end{tikzcd}\]
+As before it suffices that the right, back, and bottom sides commute,
+which respectively
+hold trivially, by the pullback property of $\al_{0}^{-1}(p)$, and
+by $\nu$ being a morphism in the over category (\texttt{$\nu$.w} in the code).
+
+\begin{lstlisting}
+  def inverse : over P ⥤ P.elements ⥤ Type u₀ :=
+  { obj := inverse_obj,
+    map := λ Q₀ Q₁ ν,
+      { app := λ ⟨ X , p ⟩ ⟨ q , hq ⟩, ⟨ ν.left.app X q ,
+          by {convert hq, exact congr_fun (congr_fun (congr_arg nat_trans.app ν.w) X) q } ⟩,
+        naturality' := λ ⟨ X , pY ⟩ ⟨ Y , pY ⟩ ⟨ h , hcomm ⟩, funext ( λ ⟨ q , hq ⟩,
+        subtype.ext (congr_fun (ν.left.naturality h) q)) } } \end{lstlisting}
+
+Naturality requires \texttt{funext} and \texttt{subtype.ext},
+but otherwise follows from naturality of $\nu$.
+
+\section{Left and right inverses}
+
+It remains show that the composed functors back and forth are naturally
+isomorphic to the identity functors.
+Here \texttt{obtain} is able to bear a lot of the workload.
+
+Our first goal is to show that the identity functor on the presheaf
+category on $\Sigma P$ is naturally isomorphic to the composition.
+This involves making natural transformations back and forth,
+both of which are also natural transformations on objects.
+These maps are easy to define once we case on the objects;
+though the goals are unsightly,
+by going tactic mode and using \texttt{dsimp} they become very simple,
+so that is the recommended first approach to making these definitions.
+
+\begin{lstlisting}
+  def unit_iso_hom : 𝟭 (P.elements ⥤ Type u₀) ⟶ to_presheaf_over ⋙ inverse :=
+  { app := λ F, { app := λ ⟨ X , p ⟩ f, ⟨ ⟨ p , f ⟩ , rfl ⟩ } }
+
+  def unit_iso_inv : to_presheaf_over ⋙ inverse ⟶ 𝟭 (P.elements ⥤ Type u₀) :=
+  { app := λ F, { app := λ ⟨ X , p ⟩ ⟨ ⟨ p' , f ⟩ , hq ⟩, eq.mp (by {congr, exact hq}) f }}
+
+  def unit_iso : 𝟭 (P.elements ⥤ Type u₀) ≅ to_presheaf_over ⋙ inverse :=
+  { hom := unit_iso_hom,
+    inv := unit_iso_inv } \end{lstlisting}
+
+Note that \texttt{obtain} worked out all the naturality conditions needed.
+For the other direction we make use of \texttt{ext} whereever possible,
+and note that in the cases of extensionality on sigma types no \texttt{heq}
+is needed. Again, nothing interesting is going on here so we omit the code.
 
 \bibliography{refs}{}
 \bibliographystyle{abbrv}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  29 MAR 2022 21:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/Arch Linux) (preloaded format=pdflatex 2022.1.6)  30 MAR 2022 11:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2925,23 +2925,23 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:211: LaTeX Error: Unicode character ⌞ (U+231E)
+./lstlean.tex:211: LaTeX Error: Unicode character 𝟭 (U+1D7ED)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.211 {⌞
-          }{{\ensuremath{\llcorner}}}1
+l.211 {𝟭
+           }{{\ensuremath{\id{}{}}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 ./lstlean.tex:211: Undefined control sequence.
-<argument> \llcorner 
-                     
-l.211 {⌞}{{\ensuremath{\llcorner}
-                                   }}1
+<argument> \id 
+               {}{}
+l.211 {𝟭}{{\ensuremath{\id{}{}}
+                                  }}1
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -2950,22 +2950,22 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:212: LaTeX Error: Unicode character ⌟ (U+231F)
+./lstlean.tex:212: LaTeX Error: Unicode character ⌞ (U+231E)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.212 {⌟
-          }{{\ensuremath{\lrcorner}}}1
+l.212 {⌞
+          }{{\ensuremath{\llcorner}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 ./lstlean.tex:212: Undefined control sequence.
-<argument> \lrcorner 
+<argument> \llcorner 
                      
-l.212 {⌟}{{\ensuremath{\lrcorner}
+l.212 {⌞}{{\ensuremath{\llcorner}
                                    }}1
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2975,363 +2975,382 @@ and I'll forget about whatever was undefined.
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:213: LaTeX Error: Unicode character ⦃ (U+2983)
+./lstlean.tex:213: LaTeX Error: Unicode character ⌟ (U+231F)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.213 {⦃
+l.213 {⌟
+          }{{\ensuremath{\lrcorner}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:213: Undefined control sequence.
+<argument> \lrcorner 
+                     
+l.213 {⌟}{{\ensuremath{\lrcorner}
+                                   }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:214: LaTeX Error: Unicode character ⦃ (U+2983)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.214 {⦃
           }{{\ensuremath{\{\!|}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:214: LaTeX Error: Unicode character ⦄ (U+2984)
+./lstlean.tex:215: LaTeX Error: Unicode character ⦄ (U+2984)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.214 {⦄
+l.215 {⦄
           }{{\ensuremath{|\!\}}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-Overfull \hbox (29.12497pt too wide) in paragraph at lines 205--215
-[]$\OML/cmm/m/it/10 N$
- []
-
-
-Overfull \hbox (7.54167pt too wide) in paragraph at lines 205--215
-\OML/cmm/m/it/10 Z$
- []
-
-
-Overfull \hbox (7.67015pt too wide) in paragraph at lines 205--215
-\OML/cmm/m/it/10 R$
- []
-
-
-Overfull \hbox (7.90555pt too wide) in paragraph at lines 205--215
-\OML/cmm/m/it/10 Q$
- []
-
-
-Overfull \hbox (7.86249pt too wide) in paragraph at lines 205--215
-\OML/cmm/m/it/10 C$
- []
-
-
-Overfull \hbox (6.11118pt too wide) in paragraph at lines 205--215
-\OMS/cmsy/m/n/10 f j$
- []
-
-
-Overfull \hbox (6.11118pt too wide) in paragraph at lines 205--215
-\OMS/cmsy/m/n/10 j g$ 
- []
-
-
-./lstlean.tex:216: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:216: LaTeX Error: Unicode character ⋙ (U+22D9)
+               not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.216 {‖
+l.216 {⋙
+          }{{\ensuremath{\ggg}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:216: Undefined control sequence.
+<argument> \ggg 
+                
+l.216 {⋙}{{\ensuremath{\ggg}
+                              }}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (29.12497pt too wide) in paragraph at lines 205--217
+[]$\OML/cmm/m/it/10 N$
+ []
+
+
+Overfull \hbox (7.54167pt too wide) in paragraph at lines 205--217
+\OML/cmm/m/it/10 Z$
+ []
+
+
+Overfull \hbox (7.67015pt too wide) in paragraph at lines 205--217
+\OML/cmm/m/it/10 R$
+ []
+
+
+Overfull \hbox (7.90555pt too wide) in paragraph at lines 205--217
+\OML/cmm/m/it/10 Q$
+ []
+
+
+Overfull \hbox (7.86249pt too wide) in paragraph at lines 205--217
+\OML/cmm/m/it/10 C$
+ []
+
+
+Overfull \hbox (6.11118pt too wide) in paragraph at lines 205--217
+\OMS/cmsy/m/n/10 f j$
+ []
+
+
+Overfull \hbox (6.11118pt too wide) in paragraph at lines 205--217
+\OMS/cmsy/m/n/10 j g$
+ []
+
+
+./lstlean.tex:218: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.218 {‖
           }{{\ensuremath{\|}}}1
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:217: LaTeX Error: Unicode character ₁ (U+2081)
+./lstlean.tex:219: LaTeX Error: Unicode character ₁ (U+2081)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.217 {₁
+l.219 {₁
           }{{\ensuremath{_1}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:218: LaTeX Error: Unicode character ₂ (U+2082)
+./lstlean.tex:220: LaTeX Error: Unicode character ₂ (U+2082)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.218 {₂
+l.220 {₂
           }{{\ensuremath{_2}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:219: LaTeX Error: Unicode character ₃ (U+2083)
+./lstlean.tex:221: LaTeX Error: Unicode character ₃ (U+2083)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.219 {₃
+l.221 {₃
           }{{\ensuremath{_3}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:220: LaTeX Error: Unicode character ₄ (U+2084)
+./lstlean.tex:222: LaTeX Error: Unicode character ₄ (U+2084)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.220 {₄
+l.222 {₄
           }{{\ensuremath{_4}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:221: LaTeX Error: Unicode character ₅ (U+2085)
+./lstlean.tex:223: LaTeX Error: Unicode character ₅ (U+2085)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.221 {₅
+l.223 {₅
           }{{\ensuremath{_5}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:222: LaTeX Error: Unicode character ₆ (U+2086)
+./lstlean.tex:224: LaTeX Error: Unicode character ₆ (U+2086)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.222 {₆
+l.224 {₆
           }{{\ensuremath{_6}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:223: LaTeX Error: Unicode character ₇ (U+2087)
+./lstlean.tex:225: LaTeX Error: Unicode character ₇ (U+2087)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.223 {₇
+l.225 {₇
           }{{\ensuremath{_7}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:224: LaTeX Error: Unicode character ₈ (U+2088)
+./lstlean.tex:226: LaTeX Error: Unicode character ₈ (U+2088)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.224 {₈
+l.226 {₈
           }{{\ensuremath{_8}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:225: LaTeX Error: Unicode character ₉ (U+2089)
+./lstlean.tex:227: LaTeX Error: Unicode character ₉ (U+2089)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.225 {₉
+l.227 {₉
           }{{\ensuremath{_9}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:226: LaTeX Error: Unicode character ₀ (U+2080)
+./lstlean.tex:228: LaTeX Error: Unicode character ₀ (U+2080)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.226 {₀
+l.228 {₀
           }{{\ensuremath{_0}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:227: LaTeX Error: Unicode character ᵢ (U+1D62)
+./lstlean.tex:229: LaTeX Error: Unicode character ᵢ (U+1D62)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.227 {ᵢ
+l.229 {ᵢ
           }{{\ensuremath{_i}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:228: LaTeX Error: Unicode character ⱼ (U+2C7C)
+./lstlean.tex:230: LaTeX Error: Unicode character ⱼ (U+2C7C)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.228 {ⱼ
+l.230 {ⱼ
           }{{\ensuremath{_j}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:229: LaTeX Error: Unicode character ₐ (U+2090)
+./lstlean.tex:231: LaTeX Error: Unicode character ₐ (U+2090)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.229 {ₐ
+l.231 {ₐ
           }{{\ensuremath{_a}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 Missing character: There is no 1 in font nullfont!
 
-Overfull \hbox (29.9988pt too wide) in paragraph at lines 216--230
+Overfull \hbox (29.9988pt too wide) in paragraph at lines 218--232
 []\TS1/cmr/m/n/10 �$\OMS/cmsy/m/n/10 k$
  []
 
 
-Overfull \hbox (4.48613pt too wide) in paragraph at lines 216--230
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 218--232
 []$
  []
 
 
-Overfull \hbox (4.48613pt too wide) in paragraph at lines 216--230
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 218--232
 []$
  []
 
 
-Overfull \hbox (4.48613pt too wide) in paragraph at lines 216--230
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 218--232
 []$
  []
 
 
-Overfull \hbox (4.48613pt too wide) in paragraph at lines 216--230
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 218--232
 []$
  []
 
 
-Overfull \hbox (4.48613pt too wide) in paragraph at lines 216--230
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 218--232
 []$
  []
 
 
-Overfull \hbox (4.48613pt too wide) in paragraph at lines 216--230
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 218--232
 []$
  []
 
 
-Overfull \hbox (4.48613pt too wide) in paragraph at lines 216--230
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 218--232
 []$
  []
 
 
-Overfull \hbox (4.48613pt too wide) in paragraph at lines 216--230
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 218--232
 []$
  []
 
 
-Overfull \hbox (4.48613pt too wide) in paragraph at lines 216--230
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 218--232
 []$
  []
 
 
-Overfull \hbox (4.48613pt too wide) in paragraph at lines 216--230
+Overfull \hbox (4.48613pt too wide) in paragraph at lines 218--232
 []$
  []
 
 
-Overfull \hbox (3.32928pt too wide) in paragraph at lines 216--230
+Overfull \hbox (3.32928pt too wide) in paragraph at lines 218--232
 []$
  []
 
 
-Overfull \hbox (4.21356pt too wide) in paragraph at lines 216--230
+Overfull \hbox (4.21356pt too wide) in paragraph at lines 218--232
 []$
  []
 
 
-Overfull \hbox (4.83765pt too wide) in paragraph at lines 216--230
+Overfull \hbox (4.83765pt too wide) in paragraph at lines 218--232
 []$ 
  []
-
-
-./lstlean.tex:231: LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.231 {¹
-         }{{\ensuremath{^1}}}1
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-Missing character: There is no 1 in font nullfont!
-
-Overfull \hbox (28.92949pt too wide) in paragraph at lines 231--232
-[]\TS1/cmr/m/n/10 �$[]$ 
- []
-
-
-./lstlean.tex:233: LaTeX Error: Unicode character ₙ (U+2099)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.233 {ₙ
-          }{{\ensuremath{_n}}}1
-You may provide a definition with
-\DeclareUnicodeCharacter 
 
 
 ./lstlean.tex:233: LaTeX Error: Missing \begin{document}.
@@ -3340,21 +3359,52 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.233 {ₙ}{{\ensuremath{_n}
-                            }}1
+l.233 {¹
+         }{{\ensuremath{^1}}}1
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:234: LaTeX Error: Unicode character ₘ (U+2098)
+Overfull \hbox (28.92949pt too wide) in paragraph at lines 233--234
+[]\TS1/cmr/m/n/10 �$[]$ 
+ []
+
+
+./lstlean.tex:235: LaTeX Error: Unicode character ₙ (U+2099)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.234 {ₘ
+l.235 {ₙ
+          }{{\ensuremath{_n}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./lstlean.tex:235: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.235 {ₙ}{{\ensuremath{_n}
+                            }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+./lstlean.tex:236: LaTeX Error: Unicode character ₘ (U+2098)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.236 {ₘ
           }{{\ensuremath{_m}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
@@ -3363,33 +3413,33 @@ Missing character: There is no 1 in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no 1 in font nullfont!
 
-Overfull \hbox (25.44333pt too wide) in paragraph at lines 233--237
+Overfull \hbox (25.44333pt too wide) in paragraph at lines 235--239
 []$[]$
  []
 
 
-Overfull \hbox (7.59612pt too wide) in paragraph at lines 233--237
+Overfull \hbox (7.59612pt too wide) in paragraph at lines 235--239
 []$
  []
 
 
-Overfull \hbox (9.9988pt too wide) in paragraph at lines 233--237
+Overfull \hbox (9.9988pt too wide) in paragraph at lines 235--239
 \TS1/cmr/m/n/10 ^$\OMS/cmsy/m/n/10 "$
  []
 
 
-Overfull \hbox (9.9988pt too wide) in paragraph at lines 233--237
+Overfull \hbox (9.9988pt too wide) in paragraph at lines 235--239
 \TS1/cmr/m/n/10 _$\OMS/cmsy/m/n/10 #$ 
  []
 
 
-./lstlean.tex:238: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:240: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.238 {.
+l.240 {.
         ..}{{\ensuremath{\ldots}}}1
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3400,67 +3450,27 @@ Missing character: There is no . in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no 1 in font nullfont!
 
-Overfull \hbox (31.66661pt too wide) in paragraph at lines 238--240
+Overfull \hbox (31.66661pt too wide) in paragraph at lines 240--242
 []$[]$
  []
 
 
-Overfull \hbox (5.55489pt too wide) in paragraph at lines 238--240
+Overfull \hbox (5.55489pt too wide) in paragraph at lines 240--242
 \TS1/cmr/m/n/10 �$\OMS/cmsy/m/n/10 ^^A$ 
  []
 
 
-./lstlean.tex:241: LaTeX Error: Unicode character ▸ (U+25B8)
+./lstlean.tex:243: LaTeX Error: Unicode character ▸ (U+25B8)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.241 {▸
+l.243 {▸
           }{{\ensuremath{\triangleright}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
-
-
-./lstlean.tex:241: LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.241 {▸}{{\ensuremath{\triangleright}
-                                        }}1
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-Missing character: There is no 1 in font nullfont!
-
-Overfull \hbox (25.00002pt too wide) in paragraph at lines 241--242
-[]$\OML/cmm/m/it/10 .$ 
- []
-
-
-./lstlean.tex:243: LaTeX Error: Unicode character Σ (U+03A3)
-               not set up for use with LaTeX.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.243 {Σ
-         }{{\color{symbolcolor}\ensuremath{\Sigma}}}1
-You may provide a definition with
-\DeclareUnicodeCharacter 
-
-./lstlean.tex:243: Undefined control sequence.
-l.243 {Σ}{{\color
-                  {symbolcolor}\ensuremath{\Sigma}}}1
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
 
 ./lstlean.tex:243: LaTeX Error: Missing \begin{document}.
@@ -3469,7 +3479,47 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.243 {Σ}{{\color{s
+l.243 {▸}{{\ensuremath{\triangleright}
+                                        }}1
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no 1 in font nullfont!
+
+Overfull \hbox (25.00002pt too wide) in paragraph at lines 243--244
+[]$\OML/cmm/m/it/10 .$ 
+ []
+
+
+./lstlean.tex:245: LaTeX Error: Unicode character Σ (U+03A3)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.245 {Σ
+         }{{\color{symbolcolor}\ensuremath{\Sigma}}}1
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+./lstlean.tex:245: Undefined control sequence.
+l.245 {Σ}{{\color
+                  {symbolcolor}\ensuremath{\Sigma}}}1
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+./lstlean.tex:245: LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.245 {Σ}{{\color{s
                     ymbolcolor}\ensuremath{\Sigma}}}1
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3487,20 +3537,20 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:244: LaTeX Error: Unicode character Π (U+03A0)
+./lstlean.tex:246: LaTeX Error: Unicode character Π (U+03A0)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.244 {Π
+l.246 {Π
          }{{\color{symbolcolor}\ensuremath{\Pi}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-./lstlean.tex:244: Undefined control sequence.
-l.244 {Π}{{\color
+./lstlean.tex:246: Undefined control sequence.
+l.246 {Π}{{\color
                   {symbolcolor}\ensuremath{\Pi}}}1
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3521,20 +3571,20 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:245: LaTeX Error: Unicode character ∀ (U+2200)
+./lstlean.tex:247: LaTeX Error: Unicode character ∀ (U+2200)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.245 {∀
+l.247 {∀
           }{{\color{symbolcolor}\ensuremath{\forall}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-./lstlean.tex:245: Undefined control sequence.
-l.245 {∀}{{\color
+./lstlean.tex:247: Undefined control sequence.
+l.247 {∀}{{\color
                    {symbolcolor}\ensuremath{\forall}}}1
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3555,20 +3605,20 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:246: LaTeX Error: Unicode character ∃ (U+2203)
+./lstlean.tex:248: LaTeX Error: Unicode character ∃ (U+2203)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.246 {∃
+l.248 {∃
           }{{\color{symbolcolor}\ensuremath{\exists}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-./lstlean.tex:246: Undefined control sequence.
-l.246 {∃}{{\color
+./lstlean.tex:248: Undefined control sequence.
+l.248 {∃}{{\color
                    {symbolcolor}\ensuremath{\exists}}}1
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3589,20 +3639,20 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no 1 in font nullfont!
 
-./lstlean.tex:247: LaTeX Error: Unicode character λ (U+03BB)
+./lstlean.tex:249: LaTeX Error: Unicode character λ (U+03BB)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.247 {λ
+l.249 {λ
          }{{\color{symbolcolor}\ensuremath{\mathrm{\lambda}}}}1
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-./lstlean.tex:247: Undefined control sequence.
-l.247 {λ}{{\color
+./lstlean.tex:249: Undefined control sequence.
+l.249 {λ}{{\color
                   {symbolcolor}\ensuremath{\mathrm{\lambda}}}}1
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3622,8 +3672,8 @@ Missing character: There is no l in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no 1 in font nullfont!
-./lstlean.tex:248: Undefined control sequence.
-l.248 {\$}{{\color
+./lstlean.tex:250: Undefined control sequence.
+l.250 {\$}{{\color
                   {symbolcolor}\$}}1
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3644,51 +3694,51 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no r in font nullfont!
 Missing character: There is no 1 in font nullfont!
 
-Overfull \hbox (27.22223pt too wide) in paragraph at lines 243--249
+Overfull \hbox (27.22223pt too wide) in paragraph at lines 245--251
 []$\OT1/cmr/m/n/10 ^^F$
  []
 
 
-Overfull \hbox (7.50002pt too wide) in paragraph at lines 243--249
+Overfull \hbox (7.50002pt too wide) in paragraph at lines 245--251
 \OT1/cmr/m/n/10 ^^E$
  []
 
 
-Overfull \hbox (5.55557pt too wide) in paragraph at lines 243--249
+Overfull \hbox (5.55557pt too wide) in paragraph at lines 245--251
 \OMS/cmsy/m/n/10 8$
  []
 
 
-Overfull \hbox (5.55557pt too wide) in paragraph at lines 243--249
+Overfull \hbox (5.55557pt too wide) in paragraph at lines 245--251
 \OMS/cmsy/m/n/10 9$
  []
 
 
-Overfull \hbox (5.83336pt too wide) in paragraph at lines 243--249
+Overfull \hbox (5.83336pt too wide) in paragraph at lines 245--251
 \OML/cmm/m/it/10 ^^U$
  []
 
 
-Overfull \hbox (9.99756pt too wide) in paragraph at lines 243--249
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 245--251
 \TS1/cmr/m/n/10 $$ 
  []
 
 
-./lstlean.tex:250: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:252: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.250 {:
+l.252 {:
         =}{{\color{symbolcolor}:=}}1
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 Missing character: There is no : in font nullfont!
 Missing character: There is no = in font nullfont!
-./lstlean.tex:250: Undefined control sequence.
-l.250 {:=}{{\color
+./lstlean.tex:252: Undefined control sequence.
+l.252 {:=}{{\color
                   {symbolcolor}:=}}1
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3711,8 +3761,8 @@ Missing character: There is no : in font nullfont!
 Missing character: There is no = in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no = in font nullfont!
-./lstlean.tex:251: Undefined control sequence.
-l.251 {=}{{\color
+./lstlean.tex:253: Undefined control sequence.
+l.253 {=}{{\color
                  {symbolcolor}=}}1
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3736,8 +3786,8 @@ Missing character: There is no 1 in font nullfont!
 Missing character: There is no < in font nullfont!
 Missing character: There is no | in font nullfont!
 Missing character: There is no > in font nullfont!
-./lstlean.tex:252: Undefined control sequence.
-l.252 {<|>}{{\color
+./lstlean.tex:254: Undefined control sequence.
+l.254 {<|>}{{\color
                    {symbolcolor}<|>}}1
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3762,8 +3812,8 @@ Missing character: There is no > in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no < in font nullfont!
 Missing character: There is no > in font nullfont!
-./lstlean.tex:253: Undefined control sequence.
-l.253 {<\$>}{{\color
+./lstlean.tex:255: Undefined control sequence.
+l.255 {<\$>}{{\color
                     {symbolcolor}<\$>}}1
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3786,8 +3836,8 @@ Missing character: There is no < in font nullfont!
 Missing character: There is no > in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no + in font nullfont!
-./lstlean.tex:254: Undefined control sequence.
-l.254 {+}{{\color
+./lstlean.tex:256: Undefined control sequence.
+l.256 {+}{{\color
                  {symbolcolor}+}}1
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3809,8 +3859,8 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no + in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no * in font nullfont!
-./lstlean.tex:255: Undefined control sequence.
-l.255 {*}{{\color
+./lstlean.tex:257: Undefined control sequence.
+l.257 {*}{{\color
                  {symbolcolor}*}}1,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3833,23 +3883,23 @@ Missing character: There is no * in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no , in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 250--256
+Overfull \hbox (20.0pt too wide) in paragraph at lines 252--258
 []
  []
 
 
-Overfull \hbox (9.99756pt too wide) in paragraph at lines 250--256
+Overfull \hbox (9.99756pt too wide) in paragraph at lines 252--258
 \TS1/cmr/m/n/10 $$
  []
 
 
-./lstlean.tex:259: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:261: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.259 m
+l.261 m
        orecomment=[s][\color{commentcolor}]{/-}{-/},
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3870,8 +3920,8 @@ Missing character: There is no [ in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no ] in font nullfont!
 Missing character: There is no [ in font nullfont!
-./lstlean.tex:259: Undefined control sequence.
-l.259 morecomment=[s][\color
+./lstlean.tex:261: Undefined control sequence.
+l.261 morecomment=[s][\color
                             {commentcolor}]{/-}{-/},
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3913,8 +3963,8 @@ Missing character: There is no [ in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no ] in font nullfont!
 Missing character: There is no [ in font nullfont!
-./lstlean.tex:260: Undefined control sequence.
-l.260 morecomment=[l][\itshape \color
+./lstlean.tex:262: Undefined control sequence.
+l.262 morecomment=[l][\itshape \color
                                      {commentcolor}]{--},
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3923,186 +3973,186 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 259--261
+Overfull \hbox (20.0pt too wide) in paragraph at lines 261--263
 []
  []
 
 
-Overfull \hbox (68.36064pt too wide) in paragraph at lines 259--261
+Overfull \hbox (68.36064pt too wide) in paragraph at lines 261--263
 \OT1/cmr/m/it/10 commentcolor]--
  []
 
 
-Overfull \hbox (3.06665pt too wide) in paragraph at lines 259--261
+Overfull \hbox (3.06665pt too wide) in paragraph at lines 261--263
 \OT1/cmr/m/it/10 , 
  []
 
 
-./lstlean.tex:263: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:265: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.263 s
+l.265 s
        howstringspaces=false,
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (122.60489pt too wide) in paragraph at lines 263--264
+Overfull \hbox (122.60489pt too wide) in paragraph at lines 265--266
 []\OT1/cmr/m/it/10 showstringspaces=false, 
  []
 
 
-./lstlean.tex:266: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:268: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.266 k
+l.268 k
        eepspaces=true,
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (93.21611pt too wide) in paragraph at lines 266--267
+Overfull \hbox (93.21611pt too wide) in paragraph at lines 268--269
 []\OT1/cmr/m/it/10 keepspaces=true, 
  []
 
 
-./lstlean.tex:269: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:271: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.269 m
+l.271 m
        orestring=[b]",
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-./lstlean.tex:270: LaTeX Error: Unicode character  (U+0092)
+./lstlean.tex:272: LaTeX Error: Unicode character  (U+0092)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.270 morestring=[d]
+l.272 morestring=[d]
                       ,
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 
-Overfull \hbox (93.12173pt too wide) in paragraph at lines 269--271
+Overfull \hbox (93.12173pt too wide) in paragraph at lines 271--273
 []\OT1/cmr/m/it/10 morestring=[b]",
  []
 
 
-Overfull \hbox (25.17203pt too wide) in paragraph at lines 269--271
+Overfull \hbox (25.17203pt too wide) in paragraph at lines 271--273
 \OT1/cmr/m/it/10 more-
  []
 
 
-Overfull \hbox (46.89415pt too wide) in paragraph at lines 269--271
+Overfull \hbox (46.89415pt too wide) in paragraph at lines 271--273
 \OT1/cmr/m/it/10 string=[d], 
  []
 
 
-./lstlean.tex:273: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:275: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.273 t
+l.275 t
        absize=3,
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (64.72194pt too wide) in paragraph at lines 273--274
+Overfull \hbox (64.72194pt too wide) in paragraph at lines 275--276
 []\OT1/cmr/m/it/10 tabsize=3, 
  []
 
 
-./lstlean.tex:276: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:278: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.276 e
+l.278 e
        xtendedchars=false,
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (110.37718pt too wide) in paragraph at lines 276--277
+Overfull \hbox (110.37718pt too wide) in paragraph at lines 278--279
 []\OT1/cmr/m/it/10 extendedchars=false, 
  []
 
 
-./lstlean.tex:279: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:281: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.279 s
+l.281 s
        ensitive=true,
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (85.29399pt too wide) in paragraph at lines 279--280
+Overfull \hbox (85.29399pt too wide) in paragraph at lines 281--282
 []\OT1/cmr/m/it/10 sensitive=true, 
  []
 
 
-./lstlean.tex:282: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:284: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.282 b
+l.284 b
        reaklines=true,
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (90.27725pt too wide) in paragraph at lines 282--284
+Overfull \hbox (90.27725pt too wide) in paragraph at lines 284--286
 []\OT1/cmr/m/it/10 breaklines=true,
  []
 
 
-Overfull \hbox (60.94952pt too wide) in paragraph at lines 282--284
+Overfull \hbox (60.94952pt too wide) in paragraph at lines 284--286
 \OT1/cmr/m/it/10 breakatwhites-
  []
 
 
-Overfull \hbox (46.63853pt too wide) in paragraph at lines 282--284
+Overfull \hbox (46.63853pt too wide) in paragraph at lines 284--286
 \OT1/cmr/m/it/10 pace=true, 
  []
 
 
-./lstlean.tex:286: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:288: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.286 b
+l.288 b
        asicstyle=\ttfamily\small,
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-./lstlean.tex:286: Undefined control sequence.
-l.286 basicstyle=\ttfamily\small
+./lstlean.tex:288: Undefined control sequence.
+l.288 basicstyle=\ttfamily\small
                                 ,
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4111,58 +4161,58 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (73.29405pt too wide) in paragraph at lines 286--287
+Overfull \hbox (73.29405pt too wide) in paragraph at lines 288--289
 []\OT1/cmr/m/it/10 basicstyle=\OT1/cmtt/m/it/10 , 
  []
 
 
-./lstlean.tex:289: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:291: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.289 c
+l.291 c
        aptionpos=b,
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (88.2494pt too wide) in paragraph at lines 289--290
+Overfull \hbox (88.2494pt too wide) in paragraph at lines 291--292
 []\OT1/cmtt/m/it/10 captionpos=b, 
  []
 
 
-./lstlean.tex:292: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:294: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.292 c
+l.294 c
        olumns=[l]fullflexible,
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (145.9989pt too wide) in paragraph at lines 292--293
+Overfull \hbox (145.9989pt too wide) in paragraph at lines 294--295
 []\OT1/cmtt/m/it/10 columns=[l]fullflexible, 
  []
 
 
-./lstlean.tex:296: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:298: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.296 i
+l.298 i
        dentifierstyle={\ttfamily\color{draculaGrey}},
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-./lstlean.tex:296: Undefined control sequence.
-l.296 identifierstyle={\ttfamily\color
+./lstlean.tex:298: Undefined control sequence.
+l.298 identifierstyle={\ttfamily\color
                                       {draculaGrey}},
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4171,24 +4221,24 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (166.99872pt too wide) in paragraph at lines 296--300
+Overfull \hbox (166.99872pt too wide) in paragraph at lines 298--302
 []\OT1/cmtt/m/it/10 identifierstyle=draculaGrey, 
  []
 
 
-./lstlean.tex:302: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:304: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.302 k
+l.304 k
        eywordstyle=[1]{\ttfamily\color{keywordcolor}},
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-./lstlean.tex:302: Undefined control sequence.
-l.302 keywordstyle=[1]{\ttfamily\color
+./lstlean.tex:304: Undefined control sequence.
+l.304 keywordstyle=[1]{\ttfamily\color
                                       {keywordcolor}},
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4197,24 +4247,24 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (172.24867pt too wide) in paragraph at lines 302--303
+Overfull \hbox (172.24867pt too wide) in paragraph at lines 304--305
 []\OT1/cmtt/m/it/10 keywordstyle=[1]keywordcolor, 
  []
 
 
-./lstlean.tex:305: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:307: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.305 k
+l.307 k
        eywordstyle=[2]{\ttfamily\color{sortcolor}},
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-./lstlean.tex:305: Undefined control sequence.
-l.305 keywordstyle=[2]{\ttfamily\color
+./lstlean.tex:307: Undefined control sequence.
+l.307 keywordstyle=[2]{\ttfamily\color
                                       {sortcolor}},
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4223,12 +4273,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (156.49881pt too wide) in paragraph at lines 305--306
+Overfull \hbox (156.49881pt too wide) in paragraph at lines 307--308
 []\OT1/cmtt/m/it/10 keywordstyle=[2]sortcolor, 
  []
 
 
-./lstlean.tex:308: LaTeX Error: The font size command \normalsize is not define
+./lstlean.tex:310: LaTeX Error: The font size command \normalsize is not define
 d:
                there is probably something wrong with the class file.
 
@@ -4236,7 +4286,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.308 k
+l.310 k
        eywordstyle=[3]{\ttfamily\color{tacticcolor}},
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -4244,19 +4294,19 @@ or  <return>  to continue without it.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 
-./lstlean.tex:308: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:310: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.308 k
+l.310 k
        eywordstyle=[3]{\ttfamily\color{tacticcolor}},
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-./lstlean.tex:308: Undefined control sequence.
-l.308 keywordstyle=[3]{\ttfamily\color
+./lstlean.tex:310: Undefined control sequence.
+l.310 keywordstyle=[3]{\ttfamily\color
                                       {tacticcolor}},
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4265,24 +4315,24 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (166.99872pt too wide) in paragraph at lines 308--309
+Overfull \hbox (166.99872pt too wide) in paragraph at lines 310--311
 []\OT1/cmtt/m/it/10 keywordstyle=[3]tacticcolor, 
  []
 
 
-./lstlean.tex:311: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:313: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.311 k
+l.313 k
        eywordstyle=[4]{\ttfamily\color{attributecolor}},
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-./lstlean.tex:311: Undefined control sequence.
-l.311 keywordstyle=[4]{\ttfamily\color
+./lstlean.tex:313: Undefined control sequence.
+l.313 keywordstyle=[4]{\ttfamily\color
                                       {attributecolor}},
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4291,24 +4341,24 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (182.74858pt too wide) in paragraph at lines 311--312
+Overfull \hbox (182.74858pt too wide) in paragraph at lines 313--314
 []\OT1/cmtt/m/it/10 keywordstyle=[4]attributecolor, 
  []
 
 
-./lstlean.tex:314: LaTeX Error: Missing \begin{document}.
+./lstlean.tex:316: LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.314 s
+l.316 s
        tringstyle=\ttfamily,
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Overfull \hbox (88.2494pt too wide) in paragraph at lines 314--315
+Overfull \hbox (88.2494pt too wide) in paragraph at lines 316--317
 []\OT1/cmtt/m/it/10 stringstyle=, 
  []
 
@@ -4320,10 +4370,10 @@ Overfull \hbox (88.2494pt too wide) in paragraph at lines 314--315
 
  
 Here is how much of TeX's memory you used:
- 167 strings out of 478353
- 1456 string characters out of 5854636
+ 170 strings out of 478353
+ 1472 string characters out of 5854636
  309976 words of memory out of 5000000
- 18390 multiletter control sequences out of 15000+600000
+ 18393 multiletter control sequences out of 15000+600000
  404279 words of font info for 30 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  24i,8n,23p,159b,149s stack positions out of 5000i,500n,10000p,200000b,80000s

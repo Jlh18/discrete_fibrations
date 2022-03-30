@@ -134,7 +134,7 @@ def inverse_obj_obj : P.elements → Type u₀ :=
 lemma inverse_obj_map_comp : Π (X Y Z : P.elements) (f : X ⟶ Y) (g : Y ⟶ Z),
   inverse_obj_map Q X Z (f ≫ g) = inverse_obj_map Q X Y f ≫ (inverse_obj_map Q Y Z g) :=
 λ ⟨ X , pX ⟩ ⟨ Y , pY ⟩ ⟨ Z , pZ ⟩ ⟨ f , fcomm ⟩ ⟨ g , gcomm ⟩, funext $ λ ⟨ qX , hqX ⟩,
-by { dsimp only [category_theory.category_of_elements], simp }
+  by { dsimp only [category_theory.category_of_elements], simp }
 
 /--
   Given a presheaf `Q : over P` in the overcategory of presheaf `P`,
@@ -159,14 +159,14 @@ by { dsimp only [category_theory.category_of_elements], simp }
 @[simps] def inverse : over P ⥤ P.elements ⥤ Type u₀ :=
 { obj := inverse_obj,
   map := λ Q₀ Q₁ ν,
-    { app := λ ⟨ X , p ⟩ ⟨ q , qX ⟩, ⟨ ν.left.app X q ,
-        by {convert qX, exact congr_fun (congr_fun (congr_arg nat_trans.app ν.w) X) q } ⟩,
+    { app := λ ⟨ X , p ⟩ ⟨ q , hq ⟩, ⟨ ν.left.app X q ,
+        by {convert hq, exact congr_fun (congr_fun (congr_arg nat_trans.app ν.w) X) q } ⟩,
       naturality' := λ ⟨ X , pY ⟩ ⟨ Y , pY ⟩ ⟨ h , hcomm ⟩, funext $ λ ⟨ q , hq ⟩,
-        subtype.ext (congr_fun (ν.left.naturality h) q) } }.
+        subtype.ext (congr_fun (ν.left.naturality h) q) } }
 
 /-- Part of `category_theory.presheaf_elements.unit_iso`-/
 def unit_iso_hom : 𝟭 (P.elements ⥤ Type u₀) ⟶ to_presheaf_over ⋙ inverse :=
-{ app := λ _, { app := λ ⟨ X , p ⟩ f, ⟨ ⟨ p , f ⟩ , rfl ⟩ } }
+{ app := λ F, { app := λ ⟨ X , p ⟩ f, ⟨ ⟨ p , f ⟩ , rfl ⟩ } }
 
 /-- Part of `category_theory.presheaf_elements.unit_iso`-/
 def unit_iso_inv : to_presheaf_over ⋙ inverse ⟶ 𝟭 (P.elements ⥤ Type u₀) :=
@@ -180,7 +180,7 @@ def unit_iso : 𝟭 (P.elements ⥤ Type u₀) ≅ to_presheaf_over ⋙ inverse 
 /-- Part of `category_theory.presheaf_elements.counit_iso`-/
 def counit_iso_hom : inverse ⋙ to_presheaf_over ⟶ 𝟭 (over P) :=
 { app := λ Q, over.hom_mk { app := λ X ⟨ p , ⟨ q , hq ⟩⟩, q }
- (by { ext X q, obtain ⟨ p , ⟨ q , hq ⟩⟩ := q, exact hq }) }
+  (by { ext X q, obtain ⟨ p , ⟨ q , hq ⟩⟩ := q, exact hq }) }
 
 /-- Part of `category_theory.presheaf_elements.counit_iso`-/
 def counit_iso_inv : 𝟭 (over P) ⟶ inverse ⋙ to_presheaf_over :=
@@ -195,7 +195,7 @@ def counit_iso_inv : 𝟭 (over P) ⟶ inverse ⋙ to_presheaf_over :=
 /-- Part of `category_theory.presheaf_elements.equivalence`-/
 def counit_iso : inverse ⋙ to_presheaf_over ≅ 𝟭 (over P) :=
 { hom := counit_iso_hom,
-  inv := counit_iso_inv }.
+  inv := counit_iso_inv }
 
 end equivalence
 
