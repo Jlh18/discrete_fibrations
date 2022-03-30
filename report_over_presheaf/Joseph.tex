@@ -507,23 +507,36 @@ right inverses.
 The idea is that a presheaf on $\CC$ takes any object $X : \CC$ to
 the set of generalized elements of $X$, which are points
 $p : \star \to P X$ ($\star : \UU$ is the terminal object in the universe).
-Then a presheaf on $\Sigma P$ takes any object
-$\< X : \CC , p : P X \>$ in the category of elements of $P$ to the
+Then a presheaf $F$ on $\Sigma P$ takes any object
+$\< X : \CC , p : P X \>$ in the category of elements of $P$ to a
 generalized elements of $X$ that commute with $p$,
 forming points $f : \star \to F\< X , p \>$.
 \[\begin{tikzcd}
-	\star \\
-	{F\<X,p\>} & P X
-	\arrow["f"', from=1-1, to=2-1]
-	\arrow["p", from=1-1, to=2-2]
-	\arrow[hook, from=2-1, to=2-2]
+	\star & F\<X,p\> \\
+        & P X
+	\arrow["f", from=1-1, to=1-2]
+	\arrow["p"', from=1-1, to=2-2]
+	\arrow[from=1-2, to=2-2]
 \end{tikzcd}\]
+If we collect these generalized elements under $F$
+across all $p : \star \to X$ then we can get a map
+$\Sigma_{p : \star \to X} F\< X , p \> \to P X$
+with each $F\< X , p \>$ the fiber of a point $p$.
+
+\[\begin{tikzcd}
+	\star & \Sigma_{p} F\<X,p\> \\
+        & P X
+	\arrow["\<p . f\>", from=1-1, to=1-2]
+	\arrow["p"', from=1-1, to=2-2]
+	\arrow[two heads, from=1-2, to=2-2]
+\end{tikzcd}\]
+
 Thus to make a functor forward, we take a functor $F : \PSh(\Sigma P) \to \UU$
-and make a presheaf over $P$ by taking any object $X : \CC$ and
-collecting all the generalized elements under $F$
-at each generalized element of $X$.
-This means
-\[ F : X : \CC \mapsto \Sigma_{p : \star \to X} F \< X , p \> : \UU \]
+and make a presheaf by
+\[ (X : \CC) \mapsto \Sigma_{p : \star \to X} F \< X , p \> : \UU \]
+It is in the over category of $P$ since we have a map down to each generalized set $P X$
+with fibers $F \< X , p \>$.
+
 To make an inverse, we take a presheaf $Q : \CC \functor \UU$ over $P$,
 meaning we have a natural transformation $\al : Q \implies P$,
 and produce a presheaf on $\Sigma P$ by taking an object $\< X,p \> : \Sigma P$
@@ -642,7 +655,7 @@ This is surprisingly straight forward
     F.map (hom_mk (𝟙 X) rfl) == F.map (𝟙 ⟨ X , p ⟩) :=
   by { congr', {simp}, {simp} } \end{lstlisting}
 
-\subsection{Tidying the rest up}
+\subsection{The rest of the functor}
 
 The story for \texttt{map\_comp'} is similar, and not worth examining in detail.
 To summarize,
@@ -653,18 +666,62 @@ since the objects are functors)
 
 \begin{lstlisting}
   def to_presheaf_map (α : F ⟶ G) : to_presheaf_obj F ⟶ to_presheaf_obj G :=
-  { app := λ X ⟨ p , f ⟩, ⟨ p , nat_trans.app α _ f ⟩,
+  { app := λ X ⟨ p , f ⟩, ⟨ p , α.app _ f ⟩,
     naturality' := λ X Y h, funext (λ ⟨ p , f ⟩, by { ext,
       { simp [to_presheaf_map._match_1, to_presheaf_obj] },
       { apply heq_of_eq, exact congr_fun
         (@nat_trans.naturality _ _ _ _ _ _ α ⟨ X , p ⟩ ⟨ Y , P.map h p ⟩ ⟨ h , rfl ⟩) f }})} \end{lstlisting}
+
+The natural transformation at each object $X : \CC$ is
+given extensionally as a map between sigma types such that for each
+generalized element $p$ of $X$ under $P$, the diagram commutes
+\[\begin{tikzcd}
+	{F \< X , p \>} & {G\<X,p\>} \\
+	\bullet & PX
+	\arrow["{\alpha _X}", from=1-1, to=1-2]
+	\arrow["f", from=2-1, to=1-1]
+	\arrow["p"', from=2-1, to=2-2]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-1, to=2-2]
+	\arrow[dashed, from=2-1, to=1-2]
+\end{tikzcd}\]
+Since this map is defined component-wise,
+we use extensionality on the sigma type to check naturality,
+and it follows from naturality of $\al$,
+i.e. the outer square commutes because each inner square commutes,
+where going to the inner square is extensionality.
+\[\begin{tikzcd}
+	F & G && {\Sigma_p F\<X,p\>} &&& {\Sigma_p G\<X,p\>} \\
+	X & {\< X , p \>} &&& {F\<X,p\>} & {G\<X,p\>} \\
+	Y & {\< Y , p \>} &&& {F\<Y,p\>} & {G\<Y,p\>} \\
+	&&& {\Sigma_p F\<Y,p\>} &&& {\Sigma_p G\<Y,p\>}
+	\arrow["h"', from=2-1, to=3-1]
+	\arrow["{\tilde{h}}"', from=2-2, to=3-2]
+	\arrow["\alpha", from=1-1, to=1-2]
+	\arrow["{(p,\alpha_X)}", from=1-4, to=1-7]
+	\arrow["{(p,F \tilde{h})}"', from=1-4, to=4-4]
+	\arrow["{(p,\alpha_Y)}"', from=4-4, to=4-7]
+	\arrow["{(p,G \tilde{h})}", from=1-7, to=4-7]
+	\arrow["{\alpha_X}", from=2-5, to=2-6]
+	\arrow["{F \tilde{h}}"', from=2-5, to=3-5]
+	\arrow["{\alpha_Y}"', from=3-5, to=3-6]
+	\arrow["{G \tilde{h}}", from=2-6, to=3-6]
+	\arrow[from=4-4, to=3-5]
+	\arrow[from=1-4, to=2-5]
+	\arrow[from=1-7, to=2-6]
+	\arrow[from=4-7, to=3-6]
+\end{tikzcd}\]
+
+We finally turn this into a functor into the over category,
+where the maps down to $P$ are projections onto the first component
+of the sigma type $\Sigma_{p} F \< X , p \>$ for each $X$.
 
 \begin{lstlisting}
 def to_presheaf_over : (P.elements ⥤ Type u₀) ⥤ over P :=
 { obj := λ F, over.mk ({ app := λ X, sigma.fst } : to_presheaf_obj F ⟶ P),
   map := λ F G α, over.hom_mk (to_presheaf_map α) } \end{lstlisting}
 
-Such a
+\section{Backwards}
 
 \bibliography{refs}{}
 \bibliographystyle{abbrv}

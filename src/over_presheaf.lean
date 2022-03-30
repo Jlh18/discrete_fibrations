@@ -80,7 +80,7 @@ variables {F} {G : P.elements ⥤ Type u₀}
   Part of the definition `category_theory.presheaf_elements.to_presheaf`
 -/
 @[simps] def to_presheaf_map (α : F ⟶ G) : to_presheaf_obj F ⟶ to_presheaf_obj G :=
-{ app := λ X ⟨ p , f ⟩, ⟨ p , nat_trans.app α _ f ⟩,
+{ app := λ X ⟨ p , f ⟩, ⟨ p , α.app _ f ⟩,
   naturality' := λ X Y h, funext $ λ ⟨ p , f ⟩, by { ext,
     { simp [to_presheaf_map._match_1, to_presheaf_obj] },
     { apply heq_of_eq, exact congr_fun
